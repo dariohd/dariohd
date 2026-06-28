@@ -27,7 +27,16 @@ export function Window({ win, children }: WindowProps) {
 
   if (win.minimized) return null;
 
-  const onTitlePointerDown = (e: ReactPointerEvent) => {
+  const handleClose = () => {
+    if (useDesktopStore.getState().osSounds) playWindowCloseRaw();
+    closeWindow(win.id);
+  };
+
+  const stopBubble = (e: ReactPointerEvent | React.MouseEvent) => {
+    e.stopPropagation();
+  };
+
+  const onDragPointerDown = (e: ReactPointerEvent) => {
     if (win.maximized) return;
     focusWindow(win.id);
     dragRef.current = { x: e.clientX, y: e.clientY, wx: win.x, wy: win.y };
@@ -35,27 +44,21 @@ export function Window({ win, children }: WindowProps) {
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
   };
 
-  const onTitlePointerMove = (e: ReactPointerEvent) => {
+  const onDragPointerMove = (e: ReactPointerEvent) => {
     if (!dragRef.current) return;
     const dx = e.clientX - dragRef.current.x;
     const dy = e.clientY - dragRef.current.y;
     moveWindow(win.id, dragRef.current.wx + dx, dragRef.current.wy + dy);
   };
 
-  const onTitlePointerUp = () => {
+  const onDragPointerUp = () => {
     dragRef.current = null;
     setIsDragging(false);
   };
 
-  const onTitleDoubleClick = () => {
-    toggleMaximize(win.id);
-  };
-
-  const onTitleClick = () => {
+  const onDragClick = () => {
     const now = Date.now();
-    if (now - lastClickRef.current < 320) {
-      onTitleDoubleClick();
-    }
+    if (now - lastClickRef.current < 320) toggleMaximize(win.id);
     lastClickRef.current = now;
   };
 
@@ -95,41 +98,54 @@ export function Window({ win, children }: WindowProps) {
       role="dialog"
       aria-label={win.title}
     >
-      <header
-        className="os-window__titlebar"
-        onPointerDown={onTitlePointerDown}
-        onPointerMove={onTitlePointerMove}
-        onPointerUp={onTitlePointerUp}
-        onPointerCancel={onTitlePointerUp}
-        onClick={onTitleClick}
-      >
-        <div className="os-window__controls">
-          <button
-            type="button"
-            className="os-window__ctrl os-window__ctrl--close"
-            aria-label="Fermer"
-            onClick={(e) => {
-              e.stopPropagation();
-              if (useDesktopStore.getState().osSounds) playWindowCloseRaw();
-              closeWindow(win.id);
-            }}
-          />
-          <button
-            type="button"
-            className="os-window__ctrl os-window__ctrl--min"
-            aria-label="Réduire"
-            onClick={(e) => { e.stopPropagation(); toggleMinimize(win.id); }}
-          />
-          <button
-            type="button"
-            className="os-window__ctrl os-window__ctrl--max"
-            aria-label="Agrandir"
-            onClick={(e) => { e.stopPropagation(); toggleMaximize(win.id); }}
-          />
+      <header className="os-window__titlebar">
+        <div
+          className="os-window__drag"
+          onPointerDown={onDragPointerDown}
+          onPointerMove={onDragPointerMove}
+          onPointerUp={onDragPointerUp}
+          onPointerCancel={onDragPointerUp}
+          onClick={onDragClick}
+        >
+          <span className="os-window__title">{win.title}</span>
         </div>
-        <span className="os-window__title">{win.title}</span>
+
+        <div className="os-window__controls" onPointerDown={stopBubble}>
+          <button
+            type="button"
+            className="os-window__btn os-window__btn--min"
+            aria-label="Réduire la fenêtre"
+            title="Réduire"
+            onPointerDown={stopBubble}
+            onClick={(e) => { e.stopPropagation(); toggleMinimize(win.id); }}
+          >
+            <span aria-hidden="true">−</span>
+          </button>
+          <button
+            type="button"
+            className="os-window__btn os-window__btn--max"
+            aria-label="Agrandir la fenêtre"
+            title="Agrandir"
+            onPointerDown={stopBubble}
+            onClick={(e) => { e.stopPropagation(); toggleMaximize(win.id); }}
+          >
+            <span aria-hidden="true">□</span>
+          </button>
+          <button
+            type="button"
+            className="os-window__btn os-window__btn--close"
+            aria-label="Fermer la fenêtre"
+            title="Fermer"
+            onPointerDown={stopBubble}
+            onClick={(e) => { e.stopPropagation(); handleClose(); }}
+          >
+            <span aria-hidden="true">✕</span>
+          </button>
+        </div>
       </header>
+
       <div className="os-window__content">{children}</div>
+
       {!win.maximized && (
         <div
           className="os-window__resize-handle"

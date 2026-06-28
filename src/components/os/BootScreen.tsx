@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useAppStore } from '../../store/appStore';
 import { profile } from '../../data/profile';
+import { projects } from '../../data/projects';
 import { playBootComplete, playBootTick } from '../../game/audio';
 
 const BOOT_LINES = [
@@ -9,7 +10,7 @@ const BOOT_LINES = [
   `Session locale ${profile.handle}@${profile.alias}… OK`,
   `${profile.alias} OS v2.0 — noyau stable`,
   'Gestionnaire de fenêtres… OK',
-  'Indexation portfolio (6 projets)… OK',
+  `Indexation portfolio (${projects.length} projets)… OK`,
   'Réseau Vercel… OK',
   `Bureau prêt — bienvenue ${profile.handle}.`,
 ];

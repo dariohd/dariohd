@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { desktopApps } from '../../data/profile';
 import { projects } from '../../data/projects';
+import { playWindowClose as playWindowCloseRaw } from '../../game/audio';
 import { useAppStore } from '../../store/appStore';
+import { useDesktopStore } from '../../store/desktopStore';
 import { useOsStore } from '../../store/osStore';
 import { StartMenu } from './StartMenu';
 
@@ -15,6 +17,7 @@ const QUICK_LAUNCH = ['projects', 'explorer', 'terminal', 'settings'] as const;
 export function Taskbar({ onStudio, onShutdown }: TaskbarProps) {
   const windows = useOsStore((s) => s.windows);
   const openApp = useOsStore((s) => s.openApp);
+  const closeWindow = useOsStore((s) => s.closeWindow);
   const focusWindow = useOsStore((s) => s.focusWindow);
   const toggleMinimize = useOsStore((s) => s.toggleMinimize);
   const discovered = useAppStore((s) => s.discovered);
@@ -22,6 +25,12 @@ export function Taskbar({ onStudio, onShutdown }: TaskbarProps) {
 
   const topZ = Math.max(0, ...windows.map((w) => w.zIndex));
   const visibleWindows = windows.filter((w) => !w.minimized);
+
+  const closeFromTaskbar = (id: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (useDesktopStore.getState().osSounds) playWindowCloseRaw();
+    closeWindow(id);
+  };
 
   return (
     <footer className="taskbar">
@@ -80,6 +89,15 @@ export function Taskbar({ onStudio, onShutdown }: TaskbarProps) {
               }}
             >
               <span className="taskbar__app-label">{win.title}</span>
+              <span
+                className="taskbar__app-close"
+                role="button"
+                aria-label={`Fermer ${win.title}`}
+                title="Fermer"
+                onClick={(e) => closeFromTaskbar(win.id, e)}
+              >
+                ✕
+              </span>
             </button>
           );
         })}

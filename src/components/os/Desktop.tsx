@@ -179,34 +179,44 @@ export function Desktop() {
             onClose={closeContextMenu}
           />
         )}
+      </main>
 
-        <AnimatePresence>
-          {!welcomeDismissed && discovered.size === 0 && (
+      <AnimatePresence>
+        {!welcomeDismissed && discovered.size === 0 && (
+          <motion.div
+            className="desktop__welcome-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Bienvenue"
+          >
             <motion.div
               className="desktop__welcome"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              role="status"
+              initial={{ opacity: 0, scale: 0.94, y: 12 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: -8 }}
+              transition={{ duration: 0.22, ease: 'easeOut' }}
             >
               <p>
                 <strong>Bienvenue sur DHD OS.</strong> Icônes à droite, dossiers en bas.
                 Clic droit sur le bureau pour plus d’options — explore les projets !
               </p>
-              <button type="button" className="btn btn--ghost btn--sm" onClick={() => setWelcomeDismissed(true)}>
+              <button type="button" className="btn btn--primary btn--sm" onClick={() => setWelcomeDismissed(true)}>
                 Compris
               </button>
             </motion.div>
-          )}
-        </AnimatePresence>
-      </main>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <Taskbar onStudio={goToRoom} onShutdown={shutdown} />
       <DiscoveryToast />
 
       {discovered.size === projects.length && (
         <div className="desktop__achievement" role="status">
-          ★ Collection complète — 6/6 projets
+          ★ Collection complète — {projects.length}/{projects.length} projets
         </div>
       )}
 

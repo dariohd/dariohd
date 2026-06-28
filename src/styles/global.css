@@ -724,38 +724,75 @@ kbd {
 
 .os-window__titlebar {
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  height: 36px;
-  padding: 0 0.75rem;
-  background: rgba(0, 0, 0, 0.25);
+  align-items: stretch;
+  height: 44px;
+  padding: 0 0 0 0.85rem;
+  background: rgba(0, 0, 0, 0.28);
   border-bottom: 1px solid var(--border);
+}
+
+.os-window__drag {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-width: 0;
   cursor: grab;
 }
 
-.os-window--dragging .os-window__titlebar { cursor: grabbing; }
+.os-window--dragging .os-window__drag { cursor: grabbing; }
 
 .os-window__controls {
   display: flex;
-  gap: 6px;
+  align-items: stretch;
+  flex-shrink: 0;
 }
 
+.os-window__btn {
+  width: 52px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-left: 1px solid var(--border);
+  transition: background 0.12s, color 0.12s;
+}
+
+.os-window__btn span {
+  line-height: 1;
+  pointer-events: none;
+}
+
+.os-window__btn:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.os-window__btn--close:hover {
+  background: #e04b4b;
+  color: #fff;
+}
+
+.os-window__btn--min:hover { background: rgba(240, 192, 96, 0.25); }
+.os-window__btn--max:hover { background: rgba(148, 200, 120, 0.22); }
+
+/* legacy dots — removed */
 .os-window__ctrl {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
+  display: none;
 }
-
-.os-window__ctrl--close { background: #f07070; }
-.os-window__ctrl--min { background: #f0c060; }
-.os-window__ctrl--max { background: #94c878; }
 
 .os-window__title {
   flex: 1;
-  text-align: center;
-  font-size: 0.82rem;
-  color: var(--text-muted);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   pointer-events: none;
+  user-select: none;
 }
 
 .os-window__content {
@@ -956,25 +993,39 @@ kbd {
   outline-offset: 2px;
 }
 
-.desktop__welcome {
+.desktop__welcome-overlay {
   position: absolute;
-  bottom: 64px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 6;
+  top: 36px;
+  left: 0;
+  right: 0;
+  bottom: 48px;
+  z-index: 40;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  max-width: min(520px, 92vw);
-  padding: 0.85rem 1rem;
-  background: rgba(15, 18, 25, 0.92);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  font-size: 0.85rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(8, 10, 16, 0.45);
+  backdrop-filter: blur(3px);
 }
 
-.desktop__welcome p { margin: 0; line-height: 1.45; }
+.desktop__welcome {
+  position: relative;
+  z-index: 41;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  max-width: min(400px, 92vw);
+  padding: 1.25rem 1.35rem;
+  background: rgba(18, 22, 32, 0.97);
+  border: 1px solid rgba(88, 168, 240, 0.25);
+  border-radius: var(--radius);
+  font-size: 0.88rem;
+  text-align: center;
+  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.5);
+}
+
+.desktop__welcome p { margin: 0; line-height: 1.55; }
 
 .desktop__shutdown {
   position: absolute;
@@ -1002,11 +1053,36 @@ kbd {
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.35rem 0.65rem;
+  padding: 0.35rem 0.45rem 0.35rem 0.65rem;
   border-radius: 8px;
   font-size: 0.78rem;
   color: var(--text-muted);
   white-space: nowrap;
+  max-width: 200px;
+}
+
+.taskbar__app-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.taskbar__app-close {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  opacity: 0.85;
+}
+
+.taskbar__app-close:hover {
+  background: rgba(224, 75, 75, 0.85);
+  color: #fff;
+  opacity: 1;
 }
 
 .taskbar__app:hover { background: rgba(255, 255, 255, 0.06); }
