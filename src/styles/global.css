@@ -1308,7 +1308,7 @@ kbd {
   min-height: 180px;
 }
 
-.app-project-detail__footer { display: flex; justify-content: flex-end; }
+.app-project-detail__footer { display: flex; justify-content: flex-end; gap: 0.5rem; flex-wrap: wrap; }
 
 /* About */
 .app-about__hero {
@@ -1370,6 +1370,83 @@ kbd {
 
 .app-about__stats strong { display: block; font-size: 1.1rem; }
 .app-about__stats span { font-size: 0.75rem; color: var(--text-muted); }
+
+.app-about__section {
+  margin-top: 1.25rem;
+}
+
+.app-about__section h3 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+
+.app-about__timeline {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.app-about__timeline-item {
+  padding: 0.65rem 0.75rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.82rem;
+}
+
+.app-about__timeline-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.35rem;
+  margin-bottom: 0.2rem;
+}
+
+.app-about__timeline-head span {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.app-about__timeline-role {
+  color: var(--text-muted);
+  margin-bottom: 0.35rem;
+  font-size: 0.78rem;
+}
+
+.app-about__timeline-item ul {
+  margin: 0;
+  padding-left: 1rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.app-about__langs {
+  list-style: none;
+  font-size: 0.85rem;
+}
+
+.app-about__langs li {
+  padding: 0.35rem 0;
+}
+
+.app-about__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.app-about__pill {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
 
 /* Stack */
 .app-stack__header { margin-bottom: 1rem; }

@@ -1,32 +1,126 @@
 export interface Skill {
   name: string;
-  category: 'fullstack' | 'frontend' | 'backend' | 'languages' | 'game' | 'creative' | 'tools';
+  category: 'fullstack' | 'frontend' | 'backend' | 'languages' | 'game' | 'creative' | 'tools' | 'network';
+}
+
+export interface Experience {
+  company: string;
+  period: string;
+  role: string;
+  highlights: string[];
+}
+
+export interface Education {
+  school: string;
+  degree: string;
+  period: string;
+  highlights: string[];
+}
+
+export interface Language {
+  name: string;
+  level: string;
 }
 
 export const profile = {
-  name: 'dariohd',
+  name: 'Hugo Davion',
   alias: 'DHD',
   handle: 'dariohd',
-  title: 'Développeur web & créateur d\'expériences interactives',
-  tagline: 'Sites vitrines, PWA métier et jeux navigateur, du pixel au WebGL.',
-  location: 'Dordogne, France',
+  title: 'Développeur full stack · alternance CGI',
+  tagline: 'Web, PWA, réseaux et expériences interactives, du pixel au WebGL.',
+  location: 'France',
+  age: 22,
   brand: 'dariohd',
   bio: [
-    'Je conçois des sites web sur mesure pour des clients locaux et des produits SaaS légers.',
-    'Mon terrain de jeu : React, TypeScript, PWA, Vercel, et parfois Babylon.js quand il faut pousser le ludique.',
-    'Chaque projet est pensé pour être rapide, accessible et agréable à utiliser au quotidien.',
+    'Développeur full stack, web et technicien réseaux. En alternance chez CGI (front-end TypeScript, back-end Java Spring, PostgreSQL) et en cycle ingénieur RIOC à UniLaSalle Amiens.',
+    'En parallèle, je conçois des sites vitrines, PWA métier et petits jeux en indépendant sous la marque dariohd.',
+    'Rigoureux, autonome et à l\'aise autant en équipe qu\'en environnement technique varié.',
   ],
   links: {
     email: 'davionhugo@gmail.com',
+    phone: '06 13 80 95 65',
     github: 'https://github.com/dariohd',
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/hugodavion',
+    portfolio: 'https://dariohd.github.io/hugodavion/',
   },
   services: [
-    { icon: '🌐', label: 'Sites vitrines', desc: 'Landing pages, SEO, réservation' },
-    { icon: '⚙️', label: 'Apps métier', desc: 'PWA, tableaux de bord, offline-first' },
-    { icon: '🎮', label: 'Expériences ludiques', desc: 'Portfolios interactifs, jeux web' },
+    { icon: '🌐', label: 'Sites vitrines', desc: 'Landing pages, SEO, réservation, multilingue' },
+    { icon: '⚙️', label: 'Apps métier', desc: 'PWA, tableaux de bord, API REST, offline-first' },
+    { icon: '🎮', label: 'Expériences ludiques', desc: 'Portfolios interactifs, jeux web, WebGL' },
   ],
 };
+
+export const experience: Experience[] = [
+  {
+    company: 'CGI',
+    period: '2025 – 2026',
+    role: 'Alternance · Dev full stack',
+    highlights: [
+      'Front-end TypeScript : interfaces, composants et intégration API',
+      'Back-end Java Spring : services, logique métier et API REST',
+      'PostgreSQL : modélisation, requêtes et évolutions de schéma',
+    ],
+  },
+  {
+    company: 'Airbus Atlantic · Méaulte',
+    period: '2024 – 2025',
+    role: 'Alternance',
+    highlights: [
+      'Scripts internes pour automatisation et réduction du temps de traitement',
+      'Support technique N2, parc de 250+ postes, gestion de workflow',
+      'Collaboration en anglais avec des équipes en Inde',
+    ],
+  },
+  {
+    company: 'Numih · Amiens',
+    period: '2023 – 2024',
+    role: 'Stages',
+    highlights: [
+      'Requêtes SQL, automatisation de processus et documentation technique',
+      'Support utilisateur, maintenance de 150+ machines, Active Directory',
+    ],
+  },
+];
+
+export const education: Education[] = [
+  {
+    school: 'UniLaSalle Amiens',
+    degree: 'Cycle ingénieur RIOC (Réseaux, Informatique et Objets Connectés)',
+    period: '2025 – 2026',
+    highlights: [
+      'Architecture logicielle, réseaux et systèmes, full stack, cybersécurité, objets connectés',
+    ],
+  },
+  {
+    school: "IUT d'Amiens",
+    degree: 'Licence pro Réseaux et Génie Informatique',
+    period: '2024 – 2025',
+    highlights: [
+      'Administration réseaux (TCP/IP, VLAN), Windows Server, scripting, C#, React',
+    ],
+  },
+  {
+    school: 'Lycée Saint-Rémi',
+    degree: 'BTS SIO option SLAM',
+    period: '2022 – 2024',
+    highlights: [
+      'POO (C#, Java), développement web, SQL/MySQL, UML, Linux/Windows, certification Cisco',
+    ],
+  },
+];
+
+export const languages: Language[] = [
+  { name: 'Français', level: 'Langue maternelle' },
+  { name: 'Anglais', level: 'C1 professionnel' },
+];
+
+export const softSkills = [
+  'Autonomie et proactivité',
+  'Organisation et rigueur',
+  'Résolution de problèmes',
+  'Communication technique',
+  'Adaptabilité',
+];
 
 export const skills: Skill[] = [
   { name: 'Full Stack', category: 'fullstack' },
@@ -42,32 +136,41 @@ export const skills: Skill[] = [
   { name: 'Framer Motion', category: 'frontend' },
   { name: 'Zustand', category: 'frontend' },
   { name: 'Tailwind CSS', category: 'frontend' },
+  { name: 'Canvas / WASM', category: 'frontend' },
 
-  { name: 'Node.js', category: 'backend' },
-  { name: 'Supabase', category: 'backend' },
+  { name: 'Node.js / Express', category: 'backend' },
+  { name: 'Java / Spring', category: 'backend' },
+  { name: 'PostgreSQL', category: 'backend' },
+  { name: 'Supabase / Neon', category: 'backend' },
   { name: 'SQL', category: 'backend' },
   { name: 'API design', category: 'backend' },
 
   { name: 'Java', category: 'languages' },
-  { name: 'C#', category: 'languages' },
-  { name: '.NET', category: 'languages' },
+  { name: 'C# / .NET', category: 'languages' },
   { name: 'Python', category: 'languages' },
+  { name: 'PHP', category: 'languages' },
+  { name: 'C++', category: 'languages' },
 
   { name: 'Babylon.js', category: 'game' },
-  { name: 'Canvas / WebGL', category: 'game' },
-  { name: 'Godot', category: 'game' },
+  { name: 'Godot 4', category: 'game' },
+  { name: 'Unreal Engine 5', category: 'game' },
+  { name: 'WebGL', category: 'game' },
 
   { name: 'Montage vidéo', category: 'creative' },
   { name: 'DaVinci Resolve', category: 'creative' },
   { name: 'After Effects', category: 'creative' },
   { name: 'Design UI', category: 'creative' },
-  { name: 'Motion design', category: 'creative' },
 
-  { name: 'Git', category: 'tools' },
+  { name: 'TCP/IP & VLAN', category: 'network' },
+  { name: 'Linux', category: 'network' },
+  { name: 'Windows Server', category: 'network' },
+  { name: 'Active Directory', category: 'network' },
+
+  { name: 'Git / GitHub', category: 'tools' },
   { name: 'Vercel', category: 'tools' },
   { name: 'Docker', category: 'tools' },
+  { name: 'Playwright', category: 'tools' },
   { name: 'Figma', category: 'tools' },
-  { name: 'Linux', category: 'tools' },
 ];
 
 export const skillCategories: Record<Skill['category'], string> = {
@@ -77,6 +180,7 @@ export const skillCategories: Record<Skill['category'], string> = {
   languages: 'Langages',
   game: 'Game & 3D',
   creative: 'Créatif & Vidéo',
+  network: 'Réseaux & Systèmes',
   tools: 'Outils & DevOps',
 };
 

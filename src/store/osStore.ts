@@ -21,9 +21,9 @@ export interface OsWindow {
 const DEFAULTS: Record<DesktopAppId, { title: string; width: number; height: number }> = {
   projects: { title: 'Projets', width: 760, height: 540 },
   explorer: { title: 'Explorateur', width: 720, height: 500 },
-  about: { title: 'À propos', width: 520, height: 480 },
-  stack: { title: 'Stack', width: 480, height: 520 },
-  contact: { title: 'Contact', width: 440, height: 420 },
+  about: { title: 'À propos', width: 560, height: 640 },
+  stack: { title: 'Stack', width: 520, height: 580 },
+  contact: { title: 'Contact', width: 480, height: 520 },
   notes: { title: 'Notes DHD', width: 480, height: 400 },
   terminal: { title: `Terminal · ${profile.handle}@${profile.alias}`, width: 640, height: 420 },
   settings: { title: 'Paramètres', width: 480, height: 520 },

@@ -4,6 +4,7 @@ export interface Project {
   tagline: string;
   description: string;
   url: string;
+  repo?: string;
   thumb?: string;
   tags: string[];
   color: string;
@@ -18,11 +19,12 @@ export const projects: Project[] = [
     name: "La Maison d'Ela",
     tagline: "Chambre d'hôtes de charme en Dordogne",
     description:
-      "Site vitrine élégant pour une maison d'hôtes en Périgord Vert : réservation, galerie photo, séjours thématiques et multilingue.",
+      "Site vitrine pour une maison d'hôtes à Jumilhac-le-Grand : séjours thématiques, galerie photo, réservation par e-mail et versions FR/EN.",
     url: 'https://lamaisondela.com',
+    repo: 'https://github.com/dariohd/LaMaisonDEla',
     thumb: 'https://lamaisondela.com/images/piscine.jpg',
     preview: 'thumbnail',
-    tags: ['HTML/CSS', 'Réservation', 'Galerie', 'Vercel'],
+    tags: ['HTML/CSS', 'Galerie', 'Multilingue', 'SEO'],
     color: '#f0a8c8',
     icon: '🦋',
     category: 'client',
@@ -32,11 +34,12 @@ export const projects: Project[] = [
     name: 'Quai des Rêves',
     tagline: 'Ancienne gare sur le GR37, Bretagne',
     description:
-      "Landing immersive pour une maison d'hôtes dans une gare rénovée : storytelling, carte, galerie et réservation WhatsApp.",
+      "Landing immersive pour une maison d'hôtes dans une gare rénovée : storytelling, chambres, carte OpenStreetMap et demande de réservation.",
     url: 'https://quai-des-reves.vercel.app/',
+    repo: 'https://github.com/dariohd/QuaiDesReves',
     thumb: 'https://quai-des-reves.vercel.app/images/og-image.jpg',
     preview: 'iframe',
-    tags: ['Landing page', 'Storytelling', 'OpenStreetMap'],
+    tags: ['Landing', 'Storytelling', 'OpenStreetMap', 'Vercel'],
     color: '#6898c8',
     icon: '🚂',
     category: 'client',
@@ -46,11 +49,12 @@ export const projects: Project[] = [
     name: 'ETCBC',
     tagline: 'Charpente & construction bois',
     description:
-      "Site professionnel pour une entreprise de charpente à Jumilhac-le-Grand : domaines d'activité, réalisations et contact.",
-    url: 'https://www.etcbc-charpente.com/',
+      "Site professionnel pour une entreprise de charpente à Jumilhac-le-Grand : métiers, zone d'intervention, galerie de chantiers filtrable et devis.",
+    url: 'https://www.etcbc-charpente.fr/',
+    repo: 'https://github.com/dariohd/ETCBC',
     thumb: 'https://www.etcbc-charpente.fr/images/gallery/realisation-18.webp',
     preview: 'iframe',
-    tags: ['Site pro', 'Galerie chantiers', 'SEO local'],
+    tags: ['Site pro', 'Galerie', 'SEO local', 'JavaScript'],
     color: '#c8a070',
     icon: '🪵',
     category: 'client',
@@ -60,11 +64,12 @@ export const projects: Project[] = [
     name: 'Domaine de Rochebonne',
     tagline: 'Gîtes & château en Charente-Maritime',
     description:
-      'Château privatisé et 9 gîtes dans un parc de 13 000 m², à 10 min des plages. Site Next.js multilingue avec réservation.',
-    url: 'https://domainederochebonne.com',
+      'Château privatisé et 9 gîtes dans un parc de 13 000 m². Site Next.js multilingue avec réservation, animations Framer Motion et SEO.',
+    url: 'https://ledomainederochebonne.com/',
+    repo: 'https://github.com/dariohd/DomaineDeRochebonne',
     thumb: 'https://l.icdbcdn.com/oh/f2bbba72-1407-4f30-9f44-bebc70b6384e.jpg?w=800',
     preview: 'thumbnail',
-    tags: ['Next.js', 'i18n', 'Framer Motion', 'Réservation'],
+    tags: ['Next.js', 'React 19', 'i18n', 'Framer Motion'],
     color: '#94c878',
     icon: '🏰',
     category: 'client',
@@ -74,10 +79,11 @@ export const projects: Project[] = [
     name: 'SQCDP',
     tagline: 'Pilotage industriel premium',
     description:
-      'Application PWA React/TypeScript pour le suivi SQCDP : tableaux de bord animés, PDCA, roulette réunion et mode hors-ligne.',
+      'PWA React/TypeScript pour le suivi SQCDP : tableaux animés, mode Daily, PDCA/8D, stand-up, roulette de réunion, export CSV/PDF et synchronisation hors-ligne via API Express.',
     url: 'https://sqcdp.vercel.app/',
+    repo: 'https://github.com/dariohd/SQCDP',
     preview: 'iframe',
-    tags: ['React', 'TypeScript', 'PWA', 'Supabase'],
+    tags: ['React', 'TypeScript', 'PWA', 'Express', 'PostgreSQL'],
     color: '#58a8f0',
     icon: '📊',
     category: 'product',
@@ -87,10 +93,11 @@ export const projects: Project[] = [
     name: 'Bulle',
     tagline: 'Assistant IA embarquable pour sites web',
     description:
-      'Widget IA autonome greffable sur n\'importe quel site vitrine : chat contextuel, API Vercel, clés par domaine et démo intégrée.',
+      'Widget IA greffable sur un site vitrine : chat contextuel, indexation du contenu, clés par domaine et déploiement Vercel.',
     url: 'https://bulle-chatbot.vercel.app',
+    repo: 'https://github.com/dariohd/BulleChatBot',
     preview: 'iframe',
-    tags: ['IA', 'Widget', 'Node.js', 'Vercel'],
+    tags: ['Next.js', 'AI SDK', 'Widget', 'Vercel'],
     color: '#a868e8',
     icon: '💬',
     category: 'product',
@@ -100,11 +107,12 @@ export const projects: Project[] = [
     name: 'Bulle ton site',
     tagline: 'Sites vitrines pour artisans & PME',
     description:
-      'Plateforme commerciale et vitrine de l\'agence : offres, diapo promo, modules embed et démos pour clients locaux.',
+      'Site commercial de l\'agence : offres artisans/tourisme, carrousel de réalisations, mini-navigateurs intégrés et modules JS.',
     url: 'https://bulletonsite.com',
+    repo: 'https://github.com/dariohd/BulleTonSite',
     thumb: 'https://bulletonsite.com/assets/og-bubble.svg',
     preview: 'thumbnail',
-    tags: ['Agence', 'Vitrine', 'Modules JS', 'SEO'],
+    tags: ['Agence', 'Modules JS', 'Thèmes CSS', 'Vercel'],
     color: '#f0c060',
     icon: '🌐',
     category: 'product',
@@ -114,25 +122,69 @@ export const projects: Project[] = [
     name: 'RL Replay',
     tagline: 'Analyse & replay Rocket League',
     description:
-      'Outil web pour revoir et analyser ses matchs Rocket League : replays, stats, parsing WASM et partage.',
+      'Outil 100 % client pour analyser ses replays Rocket League : parsing WASM, minimap, stats boost/possession et comparaison multi-replays.',
     url: 'https://rl-replay.vercel.app/',
+    repo: 'https://github.com/dariohd/RLReplay',
     preview: 'iframe',
-    tags: ['Rocket League', 'Replay', 'WASM', 'Vite'],
+    tags: ['Vite', 'WASM', 'Canvas 2D', 'Rocket League'],
     color: '#1a8fc4',
     icon: '🎮',
     category: 'product',
   },
   {
-    id: 'pokerift',
-    name: 'Rift Arena Web',
-    tagline: 'Toy Field & combat auto en navigateur',
+    id: 'hugodavion',
+    name: 'hugodavion',
+    tagline: 'Portfolio technique classique',
     description:
-      'Jeu d\'arène 3D avec Babylon.js : figurines, stages, recrutement et combat auto.',
-    url: 'https://poke-rift.vercel.app/',
+      'Portfolio HTML/CSS/JS : compétences, stack, projets filtrables par domaine, captures Playwright et CV intégré.',
+    url: 'https://dariohd.github.io/hugodavion/',
+    repo: 'https://github.com/dariohd/hugodavion',
     preview: 'iframe',
-    tags: ['Babylon.js', 'WebGL', 'PWA', 'Vercel'],
+    tags: ['HTML/CSS', 'GSAP', 'SEO', 'GitHub Pages'],
+    color: '#8898b0',
+    icon: '📄',
+    category: 'product',
+  },
+  {
+    id: 'pokerift',
+    name: 'Rift Arena',
+    tagline: 'Action RPG 3D en navigateur',
+    description:
+      'Jeu d\'arène 3D avec Babylon.js : hub dimensionnel, donjons, vagues d\'ennemis, combos et collection de figurines.',
+    url: 'https://poke-rift.vercel.app/',
+    repo: 'https://github.com/dariohd/PokeRift',
+    preview: 'iframe',
+    tags: ['Babylon.js', 'WebGL', 'Vite', 'Action RPG'],
     color: '#e878a8',
     icon: '⚔️',
+    category: 'game',
+  },
+  {
+    id: 'rumble-arena',
+    name: 'Rumble Arena Web',
+    tagline: 'Arène top-down & combat auto',
+    description:
+      'Jeu navigateur Canvas 2D : figurines, stages à débloquer, déplacement manuel, attaques automatiques et recrutement.',
+    url: 'https://pokemonrumbleweb.vercel.app/',
+    repo: 'https://github.com/dariohd/PokemonRumbleWeb',
+    preview: 'iframe',
+    tags: ['Canvas 2D', 'Vite', 'JavaScript', 'Jeu web'],
+    color: '#94c878',
+    icon: '🎯',
+    category: 'game',
+  },
+  {
+    id: 'dex-explorer',
+    name: 'Dex Explorer',
+    tagline: 'Pokédex national via PokéAPI',
+    description:
+      'Application web React : fiches détaillées, évolutions, chromatiques, recherche FR et comparaison BST. Version desktop WPF dans le même dépôt.',
+    url: 'https://github.com/dariohd/Pokedex',
+    repo: 'https://github.com/dariohd/Pokedex',
+    preview: 'thumbnail',
+    tags: ['React 19', 'TypeScript', 'PokéAPI', 'Tailwind'],
+    color: '#f0c060',
+    icon: '🔍',
     category: 'game',
   },
 ];
@@ -147,6 +199,10 @@ export function getThumbnailUrl(project: Project): string | null {
 
 export function canEmbedPreview(project: Project): boolean {
   return project.preview === 'iframe';
+}
+
+export function isRepoUrl(url: string): boolean {
+  return url.includes('github.com');
 }
 
 export const STORAGE_KEY = 'agence-davio-discovered';

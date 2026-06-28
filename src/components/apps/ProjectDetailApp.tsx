@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import {
   canEmbedPreview,
   getProjectById,
+  isRepoUrl,
 } from '../../data/projects';
 import { useAppStore } from '../../store/appStore';
 import { setWindowTitle } from '../../store/osStore';
@@ -66,8 +67,18 @@ export function ProjectDetailApp({ projectId, windowId }: ProjectDetailAppProps)
 
       <footer className="app-project-detail__footer">
         <a href={project.url} target="_blank" rel="noopener noreferrer" className="btn btn--primary">
-          Ouvrir le site ↗
+          {isRepoUrl(project.url) ? 'Voir le dépôt ↗' : 'Ouvrir le site ↗'}
         </a>
+        {project.repo && !isRepoUrl(project.url) && (
+          <a
+            href={project.repo}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn--ghost"
+          >
+            Code source ↗
+          </a>
+        )}
       </footer>
     </div>
   );

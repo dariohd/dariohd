@@ -6,6 +6,7 @@ const CATEGORY_ORDER: Skill['category'][] = [
   'frontend',
   'backend',
   'languages',
+  'network',
   'game',
   'creative',
   'tools',
@@ -16,7 +17,7 @@ export function StackApp() {
     <div className="app-stack">
       <header className="app-stack__header">
         <h2>Stack & compétences</h2>
-        <p>Full Stack, web, langages, 3D, montage vidéo. Un profil polyvalent.</p>
+        <p>Full stack, web, réseaux, langages, 3D et montage vidéo. Un profil polyvalent.</p>
       </header>
 
       {CATEGORY_ORDER.map((cat, catIdx) => {
