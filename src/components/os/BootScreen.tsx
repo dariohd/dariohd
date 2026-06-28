@@ -6,7 +6,7 @@ import { projects } from '../../data/projects';
 import { playBootComplete, playBootTick } from '../../game/audio';
 
 const BOOT_LINES = [
-  'Connexion depuis Chambre Nate… OK',
+  'Connexion depuis la chambre… OK',
   `Session locale ${profile.handle}@${profile.alias}… OK`,
   `${profile.alias} OS v2.0 — noyau stable`,
   'Gestionnaire de fenêtres… OK',

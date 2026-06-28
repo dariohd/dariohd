@@ -7,7 +7,7 @@
   <text x="120" y="290" font-family="system-ui,sans-serif" font-size="72" font-weight="700" fill="#e8ecf4">dariohd</text>
   <text x="120" y="350" font-family="system-ui,sans-serif" font-size="32" fill="#58a8f0">DHD OS · Chambre ’ PC ’ Projets</text>
   <text x="120" y="430" font-family="system-ui,sans-serif" font-size="24" fill="#8b95a8">Sites vitrines · PWA métier · Expériences ludiques</text>
-  <text x="120" y="480" font-family="system-ui,sans-serif" font-size="22" fill="#94c878">Bulle ton site · Dordogne, France</text>
+  <text x="120" y="480" font-family="system-ui,sans-serif" font-size="22" fill="#94c878">Dordogne, France</text>
   <rect x="920" y="340" width="140" height="140" rx="20" fill="#242b3d" stroke="#58a8f0" stroke-width="3"/>
   <text x="990" y="425" text-anchor="middle" font-family="system-ui,sans-serif" font-size="42" font-weight="700" fill="#58a8f0">DHD</text>
 </svg>

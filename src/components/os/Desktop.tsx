@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { desktopApps } from '../../data/profile';
+import { desktopApps, miniGames } from '../../data/profile';
 import { desktopFolders } from '../../data/desktopItems';
 import { projects } from '../../data/projects';
 import { useAppStore } from '../../store/appStore';
@@ -10,6 +10,7 @@ import { useDesktopShortcuts } from '../../hooks/useDesktopShortcuts';
 import { useFocusTrap } from '../../hooks/useFocusTrap';
 import { playIconOpen, playShutdown } from '../../game/audio';
 import { DiscoveryToast } from '../DiscoveryToast';
+import { DesktopWallpaper } from './DesktopWallpaper';
 import { DesktopContextMenu } from './DesktopContextMenu';
 import { DesktopFolder } from './DesktopFolder';
 import { DesktopWidgets } from './DesktopWidgets';
@@ -104,12 +105,7 @@ export function Desktop() {
 
   return (
     <div className={`desktop desktop--wallpaper-${wallpaper}`}>
-      <div className="desktop__wallpaper" aria-hidden="true">
-        <div className="desktop__grid" />
-        <div className="desktop__orb desktop__orb--1" />
-        <div className="desktop__orb desktop__orb--2" />
-        <div className="desktop__orb desktop__orb--3" />
-      </div>
+      <DesktopWallpaper wallpaper={wallpaper} />
 
       <header className="desktop__menubar">
         <span className="desktop__menubar-brand">
@@ -148,6 +144,22 @@ export function Desktop() {
             color={app.color}
             shortcut={i < 8 ? `Alt+${i + 1}` : undefined}
             index={i}
+            zone="app"
+            selected={selectedIcon === app.id}
+            onSelect={() => setSelectedIcon(app.id)}
+            onOpen={() => openApp(app.id)}
+          />
+        ))}
+
+        {miniGames.map((app, i) => (
+          <DraggableDesktopIcon
+            key={app.id}
+            id={app.id}
+            icon={app.icon}
+            label={app.label}
+            color={app.color}
+            index={i}
+            zone="game"
             selected={selectedIcon === app.id}
             onSelect={() => setSelectedIcon(app.id)}
             onOpen={() => openApp(app.id)}
@@ -242,7 +254,7 @@ export function Desktop() {
               <li><kbd>Alt</kbd> + <kbd>1–8</kbd> Ouvrir une app</li>
               <li><kbd>Échap</kbd> Fermer la fenêtre active</li>
               <li><kbd>?</kbd> Afficher cette aide</li>
-              <li>Double-clic icône Ouvrir · Glisser pour déplacer</li>
+              <li>Clic icône Ouvrir · Glisser pour déplacer</li>
               <li>Clic droit bureau Menu contextuel</li>
               <li>Terminal <code>studio</code> Retour chambre</li>
             </ul>

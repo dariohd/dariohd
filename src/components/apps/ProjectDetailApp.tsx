@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import {
   canEmbedPreview,
   getProjectById,
-  getThumbnailUrl,
 } from '../../data/projects';
 import { useAppStore } from '../../store/appStore';
 import { setWindowTitle } from '../../store/osStore';
+import { ProjectPreview } from './ProjectPreview';
 
 interface ProjectDetailAppProps {
   projectId: string;
@@ -59,11 +59,7 @@ export function ProjectDetailApp({ projectId, windowId }: ProjectDetailAppProps)
           />
         ) : (
           <a href={project.url} target="_blank" rel="noopener noreferrer" className="app-project-detail__thumb-link">
-            <img
-              src={getThumbnailUrl(project.url)}
-              alt={`Capture ${project.name}`}
-              className="app-project-detail__thumb"
-            />
+            <ProjectPreview project={project} className="app-project-detail__thumb" />
           </a>
         )}
       </div>

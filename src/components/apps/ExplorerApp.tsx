@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { profile } from '../../data/profile';
+import { miniGames, profile, type MiniGameId } from '../../data/profile';
 import { projects } from '../../data/projects';
 import { useAppStore } from '../../store/appStore';
 import { useOsStore } from '../../store/osStore';
@@ -10,7 +10,7 @@ type TreeNode = {
   icon: string;
   children?: TreeNode[];
   projectId?: string;
-  appId?: 'projects' | 'about' | 'stack' | 'contact' | 'notes' | 'terminal' | 'settings';
+  appId?: 'projects' | 'about' | 'stack' | 'contact' | 'notes' | 'terminal' | 'settings' | MiniGameId;
   url?: string;
 };
 
@@ -40,9 +40,20 @@ const TREE: TreeNode[] = [
     icon: '📂',
     children: projects.map((p) => ({
       id: p.id,
-      label: `${p.icon} ${p.name}`,
+      label: p.name,
       icon: p.icon,
       projectId: p.id,
+    })),
+  },
+  {
+    id: 'games',
+    label: 'Jeux',
+    icon: '🎮',
+    children: miniGames.map((g) => ({
+      id: g.id,
+      label: g.label,
+      icon: g.icon,
+      appId: g.id,
     })),
   },
   {
@@ -50,7 +61,6 @@ const TREE: TreeNode[] = [
     label: 'Réseau',
     icon: '🌐',
     children: [
-      { id: 'site', label: profile.brand, icon: '🌐', url: profile.links.website },
       { id: 'github', label: 'GitHub', icon: '🐙', url: profile.links.github },
     ],
   },
@@ -110,10 +120,10 @@ export function ExplorerApp() {
                 className={`app-explorer__row${selected?.id === node.id ? ' app-explorer__row--active' : ''}`}
                 style={{ paddingLeft: `${0.5 + depth * 0.85}rem` }}
                 onClick={() => {
+                  setSelected(node);
                   if (hasKids) toggle(node.id);
-                  else openNode(node);
+                  if (!hasKids || node.projectId || node.appId || node.url) openNode(node);
                 }}
-                onDoubleClick={() => openNode(node)}
               >
                 <span className="app-explorer__chevron" aria-hidden="true">
                   {hasKids ? (isOpen ? '▾' : '▸') : '·'}
@@ -140,7 +150,7 @@ export function ExplorerApp() {
                   </button>
                 </>
               ) : (
-                <p className="app-explorer__hint">Double-clic ou bouton pour ouvrir.</p>
+                <p className="app-explorer__hint">Cliquez pour ouvrir.</p>
               )}
             </>
           ) : (

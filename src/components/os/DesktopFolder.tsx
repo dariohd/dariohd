@@ -14,7 +14,6 @@ export function DesktopFolder({ icon, label, color, onOpen }: DesktopFolderProps
         icon={icon}
         label={label}
         color={color}
-        onSelect={() => {}}
         onOpen={onOpen}
       />
     </div>

@@ -27,6 +27,15 @@ const DEFAULTS: Record<DesktopAppId, { title: string; width: number; height: num
   notes: { title: 'Notes DHD', width: 480, height: 400 },
   terminal: { title: `Terminal — ${profile.handle}@${profile.alias}`, width: 640, height: 420 },
   settings: { title: 'Paramètres', width: 480, height: 520 },
+  'game-pong': { title: 'Pong', width: 700, height: 500 },
+  'game-snake': { title: 'Snake', width: 560, height: 500 },
+  'game-solitaire': { title: 'Solitaire', width: 720, height: 600 },
+  'game-2048': { title: '2048', width: 520, height: 560 },
+  'game-minesweeper': { title: 'Démineur', width: 420, height: 540 },
+  'game-memory': { title: 'Memory', width: 440, height: 520 },
+  'game-breakout': { title: 'Breakout', width: 620, height: 500 },
+  'game-tetris': { title: 'Tetris', width: 440, height: 560 },
+  'game-flappy': { title: 'Flappy', width: 400, height: 660 },
   'project-detail': { title: 'Projet', width: 700, height: 560 },
 };
 

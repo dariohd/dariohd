@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { desktopApps, profile } from '../../data/profile';
+import { allDesktopApps, profile } from '../../data/profile';
 import type { DesktopAppId } from '../../data/profile';
 import { useOsStore } from '../../store/osStore';
 
@@ -41,7 +41,7 @@ export function StartMenu({ open, onClose, onStudio, onShutdown }: StartMenuProp
     onClose();
   };
 
-  const filtered = desktopApps.filter((app) =>
+  const filtered = allDesktopApps.filter((app) =>
     app.label.toLowerCase().includes(query.toLowerCase()),
   );
 
@@ -51,7 +51,7 @@ export function StartMenu({ open, onClose, onStudio, onShutdown }: StartMenuProp
         <span className="start-menu__avatar">{profile.alias[0]}</span>
         <div>
           <div className="start-menu__user">{profile.handle}</div>
-          <div className="start-menu__host">{profile.alias}.local · Chambre Nate</div>
+          <div className="start-menu__host">{profile.alias}.local · Studio DHD</div>
         </div>
       </div>
 
@@ -71,7 +71,7 @@ export function StartMenu({ open, onClose, onStudio, onShutdown }: StartMenuProp
           <p className="start-menu__empty">Aucune application trouvée.</p>
         ) : (
           filtered.map((app) => {
-            const idx = desktopApps.findIndex((a) => a.id === app.id);
+            const idx = allDesktopApps.findIndex((a) => a.id === app.id);
             return (
               <button
                 key={app.id}

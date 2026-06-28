@@ -75,9 +75,9 @@ export function SettingsApp() {
       <section className="app-settings__section app-settings__section--muted">
         <h3>À propos du système</h3>
         <ul>
-          <li>Chambre Nate · style Pokémon NB2</li>
+          <li>Chambre pixel · style rétro GBA</li>
           <li>Bureau DHD OS · React + TypeScript</li>
-          <li>{profile.brand} · {profile.location}</li>
+          <li>{profile.alias} · {profile.location}</li>
         </ul>
       </section>
     </div>

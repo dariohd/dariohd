@@ -1,4 +1,4 @@
-import { useState, type PointerEvent as ReactPointerEvent } from 'react';
+import { useState } from 'react';
 import { playIconOpen as playIconOpenRaw } from '../../game/audio';
 import { useDesktopStore } from '../../store/desktopStore';
 
@@ -8,11 +8,21 @@ interface DesktopIconProps {
   color: string;
   shortcut?: string;
   selected?: boolean;
-  onSelect: () => void;
-  onOpen: () => void;
+  passive?: boolean;
+  onSelect?: () => void;
+  onOpen?: () => void;
 }
 
-export function DesktopIcon({ icon, label, color, shortcut, selected, onSelect, onOpen }: DesktopIconProps) {
+export function DesktopIcon({
+  icon,
+  label,
+  color,
+  shortcut,
+  selected,
+  passive,
+  onSelect,
+  onOpen,
+}: DesktopIconProps) {
   const [pressed, setPressed] = useState(false);
 
   const handleOpen = () => {
@@ -20,35 +30,33 @@ export function DesktopIcon({ icon, label, color, shortcut, selected, onSelect, 
     if (typeof navigator !== 'undefined' && navigator.vibrate) {
       navigator.vibrate(12);
     }
-    onOpen();
+    onOpen?.();
   };
 
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (selected) {
-      handleOpen();
-      return;
-    }
-    onSelect();
+    onSelect?.();
+    handleOpen();
   };
 
-  const onPointerDown = (e: ReactPointerEvent) => {
+  const onPointerDown = () => {
+    if (passive) return;
     setPressed(true);
-    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
   };
 
-  const onPointerUp = () => setPressed(false);
+  const onPointerUp = () => {
+    if (passive) return;
+    setPressed(false);
+  };
+
+  const Tag = passive ? 'div' : 'button';
 
   return (
-    <button
-      type="button"
-      className={`desktop-icon${selected ? ' desktop-icon--selected' : ''}${pressed ? ' desktop-icon--pressed' : ''}`}
-      aria-label={`${label}${shortcut ? `, raccourci ${shortcut}` : ''}`}
-      onClick={handleClick}
-      onDoubleClick={(e) => {
-        e.stopPropagation();
-        handleOpen();
-      }}
+    <Tag
+      {...(!passive ? { type: 'button' as const } : {})}
+      className={`desktop-icon${selected ? ' desktop-icon--selected' : ''}${pressed ? ' desktop-icon--pressed' : ''}${passive ? ' desktop-icon--passive' : ''}`}
+      aria-label={passive ? undefined : `${label}${shortcut ? `, raccourci ${shortcut}` : ''}`}
+      {...(!passive ? { onClick: handleClick } : { 'aria-hidden': true as const })}
       onPointerDown={onPointerDown}
       onPointerUp={onPointerUp}
       onPointerLeave={onPointerUp}
@@ -60,6 +68,6 @@ export function DesktopIcon({ icon, label, color, shortcut, selected, onSelect, 
       </span>
       <span className="desktop-icon__label">{label}</span>
       {shortcut && <span className="desktop-icon__shortcut">{shortcut}</span>}
-    </button>
+    </Tag>
   );
 }

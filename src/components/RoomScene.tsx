@@ -241,7 +241,7 @@ export function RoomScene() {
             <canvas
               ref={canvasRef}
               className="room-scene__canvas"
-              aria-label="Chambre Nate"
+              aria-label="Chambre pixel"
               onClick={handleCanvasClick}
             />
 

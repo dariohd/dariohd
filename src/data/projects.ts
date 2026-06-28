@@ -4,6 +4,7 @@ export interface Project {
   tagline: string;
   description: string;
   url: string;
+  thumb?: string;
   tags: string[];
   color: string;
   icon: string;
@@ -19,6 +20,7 @@ export const projects: Project[] = [
     description:
       "Site vitrine élégant pour une maison d'hôtes en Périgord Vert : réservation, galerie photo, séjours thématiques et multilingue.",
     url: 'https://lamaisondela.com',
+    thumb: 'https://lamaisondela.com/images/piscine.jpg',
     preview: 'thumbnail',
     tags: ['HTML/CSS', 'Réservation', 'Galerie', 'Vercel'],
     color: '#f0a8c8',
@@ -32,6 +34,7 @@ export const projects: Project[] = [
     description:
       "Landing immersive pour une maison d'hôtes dans une gare rénovée : storytelling, carte, galerie et réservation WhatsApp.",
     url: 'https://quai-des-reves.vercel.app/',
+    thumb: 'https://quai-des-reves.vercel.app/images/og-image.jpg',
     preview: 'iframe',
     tags: ['Landing page', 'Storytelling', 'OpenStreetMap'],
     color: '#6898c8',
@@ -45,6 +48,7 @@ export const projects: Project[] = [
     description:
       "Site professionnel pour une entreprise de charpente à Jumilhac-le-Grand : domaines d'activité, réalisations et contact.",
     url: 'https://www.etcbc-charpente.com/',
+    thumb: 'https://www.etcbc-charpente.fr/images/gallery/realisation-18.webp',
     preview: 'iframe',
     tags: ['Site pro', 'Galerie chantiers', 'SEO local'],
     color: '#c8a070',
@@ -57,7 +61,8 @@ export const projects: Project[] = [
     tagline: 'Gîtes & château en Charente-Maritime',
     description:
       'Château privatisé et 9 gîtes dans un parc de 13 000 m², à 10 min des plages. Site Next.js multilingue avec réservation.',
-    url: 'https://ledomainederochebonne.com',
+    url: 'https://domainederochebonne.com',
+    thumb: 'https://l.icdbcdn.com/oh/f2bbba72-1407-4f30-9f44-bebc70b6384e.jpg?w=800',
     preview: 'thumbnail',
     tags: ['Next.js', 'i18n', 'Framer Motion', 'Réservation'],
     color: '#94c878',
@@ -84,7 +89,7 @@ export const projects: Project[] = [
     description:
       'Widget IA autonome greffable sur n\'importe quel site vitrine : chat contextuel, API Vercel, clés par domaine et démo intégrée.',
     url: 'https://bulle-chatbot.vercel.app',
-    preview: 'thumbnail',
+    preview: 'iframe',
     tags: ['IA', 'Widget', 'Node.js', 'Vercel'],
     color: '#a868e8',
     icon: '💬',
@@ -97,6 +102,7 @@ export const projects: Project[] = [
     description:
       'Plateforme commerciale et vitrine de l\'agence : offres, diapo promo, modules embed et démos pour clients locaux.',
     url: 'https://bulletonsite.com',
+    thumb: 'https://bulletonsite.com/assets/og-bubble.svg',
     preview: 'thumbnail',
     tags: ['Agence', 'Vitrine', 'Modules JS', 'SEO'],
     color: '#f0c060',
@@ -118,15 +124,15 @@ export const projects: Project[] = [
   },
   {
     id: 'pokerift',
-    name: 'Pokémon Rumble Web',
-    tagline: 'Toy Field & action RPG navigateur',
+    name: 'Rift Arena Web',
+    tagline: 'Toy Field & combat auto en navigateur',
     description:
-      'Jeu 3D style Pokémon Rumble avec Babylon.js : hub dimensionnel, donjons, vagues d\'ennemis, recrutement et combos.',
+      'Jeu d\'arène 3D avec Babylon.js : figurines, stages, recrutement et combat auto.',
     url: 'https://poke-rift.vercel.app/',
     preview: 'iframe',
     tags: ['Babylon.js', 'WebGL', 'PWA', 'Vercel'],
     color: '#e878a8',
-    icon: '🎎',
+    icon: '⚔️',
     category: 'game',
   },
 ];
@@ -135,8 +141,8 @@ export function getProjectById(id: string): Project | undefined {
   return projects.find((p) => p.id === id);
 }
 
-export function getThumbnailUrl(url: string): string {
-  return `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=800`;
+export function getThumbnailUrl(project: Project): string | null {
+  return project.thumb ?? null;
 }
 
 export function canEmbedPreview(project: Project): boolean {

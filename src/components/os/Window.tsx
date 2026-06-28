@@ -87,9 +87,11 @@ export function Window({ win, children }: WindowProps) {
     ? { left: 0, top: 36, width: '100%', height: 'calc(100% - 36px - 48px)' }
     : { left: win.x, top: win.y, width: win.width, height: win.height };
 
+  const isGame = win.appId.startsWith('game-');
+
   return (
     <motion.section
-      className={`os-window${isDragging ? ' os-window--dragging' : ''}${isResizing ? ' os-window--resizing' : ''}${win.maximized ? ' os-window--maximized' : ''}`}
+      className={`os-window${isGame ? ' os-window--game' : ''}${isDragging ? ' os-window--dragging' : ''}${isResizing ? ' os-window--resizing' : ''}${win.maximized ? ' os-window--maximized' : ''}`}
       style={{ ...style, zIndex: win.zIndex }}
       initial={{ opacity: 0, scale: 0.94, y: 10 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}

@@ -44,7 +44,7 @@ const NATE_ROW: Record<Dir, number> = {
   up: 3,
 };
 
-const NATE_SIZE = 44;
+const NATE_SIZE = 52;
 const FOOT_W = 4;
 const MOVE_SPEED = 88;
 let lastStepBeep = 0;
@@ -161,7 +161,7 @@ function drawNate(ctx: CanvasRenderingContext2D, player: PlayerState) {
 
   ctx.fillStyle = 'rgba(0,0,0,0.22)';
   ctx.beginPath();
-  ctx.ellipse(player.x, player.y + 1, 14, 4.5, 0, 0, Math.PI * 2);
+  ctx.ellipse(player.x, player.y + 1, 17, 5.5, 0, 0, Math.PI * 2);
   ctx.fill();
 
   ctx.drawImage(nate, sx, sy, 64, 64, dx, dy, NATE_SIZE, NATE_SIZE);

@@ -1,7 +1,6 @@
 export interface Skill {
   name: string;
-  level: number;
-  category: 'frontend' | 'backend' | 'game' | 'tools';
+  category: 'fullstack' | 'frontend' | 'backend' | 'languages' | 'game' | 'creative' | 'tools';
 }
 
 export const profile = {
@@ -11,7 +10,7 @@ export const profile = {
   title: 'Développeur web & créateur d\'expériences interactives',
   tagline: 'Sites vitrines, PWA métier et jeux navigateur — du pixel au WebGL.',
   location: 'Dordogne, France',
-  brand: 'Bulle ton site',
+  brand: 'dariohd',
   bio: [
     'Je conçois des sites web sur mesure pour des clients locaux et des produits SaaS légers.',
     'Mon terrain de jeu : React, TypeScript, PWA, Vercel — et parfois Babylon.js quand il faut pousser le ludique.',
@@ -21,7 +20,6 @@ export const profile = {
     email: 'davionhugo@gmail.com',
     github: 'https://github.com/dariohd',
     linkedin: '',
-    website: 'https://bulletonsite.com',
   },
   services: [
     { icon: '🌐', label: 'Sites vitrines', desc: 'Landing pages, SEO, réservation' },
@@ -31,24 +29,54 @@ export const profile = {
 };
 
 export const skills: Skill[] = [
-  { name: 'React', level: 90, category: 'frontend' },
-  { name: 'TypeScript', level: 88, category: 'frontend' },
-  { name: 'HTML / CSS', level: 92, category: 'frontend' },
-  { name: 'Vite / Next.js', level: 85, category: 'frontend' },
-  { name: 'PWA', level: 82, category: 'frontend' },
-  { name: 'Node.js', level: 70, category: 'backend' },
-  { name: 'Vercel', level: 88, category: 'tools' },
-  { name: 'Babylon.js', level: 75, category: 'game' },
-  { name: 'Canvas / WebGL', level: 78, category: 'game' },
-  { name: 'Git', level: 85, category: 'tools' },
-  { name: 'Framer Motion', level: 80, category: 'frontend' },
-  { name: 'Zustand', level: 82, category: 'frontend' },
+  { name: 'Full Stack', category: 'fullstack' },
+  { name: 'Architecture web', category: 'fullstack' },
+  { name: 'APIs REST', category: 'fullstack' },
+  { name: 'PWA', category: 'fullstack' },
+
+  { name: 'React', category: 'frontend' },
+  { name: 'TypeScript', category: 'frontend' },
+  { name: 'JavaScript', category: 'frontend' },
+  { name: 'HTML / CSS', category: 'frontend' },
+  { name: 'Vite / Next.js', category: 'frontend' },
+  { name: 'Framer Motion', category: 'frontend' },
+  { name: 'Zustand', category: 'frontend' },
+  { name: 'Tailwind CSS', category: 'frontend' },
+
+  { name: 'Node.js', category: 'backend' },
+  { name: 'Supabase', category: 'backend' },
+  { name: 'SQL', category: 'backend' },
+  { name: 'API design', category: 'backend' },
+
+  { name: 'Java', category: 'languages' },
+  { name: 'C#', category: 'languages' },
+  { name: '.NET', category: 'languages' },
+  { name: 'Python', category: 'languages' },
+
+  { name: 'Babylon.js', category: 'game' },
+  { name: 'Canvas / WebGL', category: 'game' },
+  { name: 'Godot', category: 'game' },
+
+  { name: 'Montage vidéo', category: 'creative' },
+  { name: 'DaVinci Resolve', category: 'creative' },
+  { name: 'After Effects', category: 'creative' },
+  { name: 'Design UI', category: 'creative' },
+  { name: 'Motion design', category: 'creative' },
+
+  { name: 'Git', category: 'tools' },
+  { name: 'Vercel', category: 'tools' },
+  { name: 'Docker', category: 'tools' },
+  { name: 'Figma', category: 'tools' },
+  { name: 'Linux', category: 'tools' },
 ];
 
 export const skillCategories: Record<Skill['category'], string> = {
+  fullstack: 'Full Stack',
   frontend: 'Frontend',
   backend: 'Backend',
+  languages: 'Langages',
   game: 'Game & 3D',
+  creative: 'Créatif & Vidéo',
   tools: 'Outils & DevOps',
 };
 
@@ -63,4 +91,23 @@ export const desktopApps = [
   { id: 'settings' as const, label: 'Paramètres', icon: '⚙️', color: '#98a8c8' },
 ];
 
-export type DesktopAppId = (typeof desktopApps)[number]['id'] | 'project-detail';
+export const miniGames = [
+  { id: 'game-pong' as const, label: 'Pong', icon: '🏓', color: '#58a8f0' },
+  { id: 'game-snake' as const, label: 'Snake', icon: '🐍', color: '#94c878' },
+  { id: 'game-solitaire' as const, label: 'Solitaire', icon: '🃏', color: '#f0c060' },
+  { id: 'game-2048' as const, label: '2048', icon: '🔢', color: '#e878a8' },
+  { id: 'game-minesweeper' as const, label: 'Démineur', icon: '💣', color: '#8898b0' },
+  { id: 'game-memory' as const, label: 'Memory', icon: '🎴', color: '#f0a8c8' },
+  { id: 'game-breakout' as const, label: 'Breakout', icon: '🧱', color: '#c87858' },
+  { id: 'game-tetris' as const, label: 'Tetris', icon: '🟦', color: '#6898c8' },
+  { id: 'game-flappy' as const, label: 'Flappy', icon: '🐤', color: '#f0c060' },
+] as const;
+
+export type MiniGameId = (typeof miniGames)[number]['id'];
+
+export type DesktopAppId =
+  | (typeof desktopApps)[number]['id']
+  | MiniGameId
+  | 'project-detail';
+
+export const allDesktopApps = [...desktopApps, ...miniGames];

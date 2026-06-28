@@ -1,7 +1,8 @@
 import { useState, type CSSProperties } from 'react';
-import { getThumbnailUrl, projects, type Project } from '../../data/projects';
+import { projects, type Project } from '../../data/projects';
 import { useAppStore } from '../../store/appStore';
 import { useOsStore } from '../../store/osStore';
+import { ProjectPreview } from './ProjectPreview';
 
 type Filter = 'all' | Project['category'];
 
@@ -54,7 +55,7 @@ export function ProjectsApp() {
             onClick={() => openProject(project.id)}
           >
             <div className="project-card__preview">
-              <img src={getThumbnailUrl(project.url)} alt="" loading="lazy" />
+              <ProjectPreview project={project} embed />
               <span className="project-card__icon">{project.icon}</span>
               {discovered.has(project.id) && <span className="project-card__badge">✓</span>}
             </div>

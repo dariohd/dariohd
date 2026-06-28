@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, type PointerEvent as ReactPointerEvent } from 'react';
+import { playIconOpen } from '../../game/audio';
 import { DesktopIcon } from './DesktopIcon';
 import { useDesktopStore } from '../../store/desktopStore';
 import { defaultIconPosition } from '../../data/desktopItems';
@@ -12,6 +13,7 @@ interface DraggableDesktopIconProps {
   color: string;
   shortcut?: string;
   index: number;
+  zone: 'app' | 'game';
   selected?: boolean;
   onSelect: () => void;
   onOpen: () => void;
@@ -24,42 +26,84 @@ export function DraggableDesktopIcon({
   color,
   shortcut,
   index,
+  zone,
   selected,
   onSelect,
   onOpen,
 }: DraggableDesktopIconProps) {
   const iconPositions = useDesktopStore((s) => s.iconPositions);
   const setIconPosition = useDesktopStore((s) => s.setIconPosition);
-  const dragRef = useRef<{ x: number; y: number; ox: number; oy: number; moved: boolean } | null>(null);
+  const slotRef = useRef<HTMLDivElement>(null);
+  const dragRef = useRef<{
+    pointerId: number;
+    x: number;
+    y: number;
+    ox: number;
+    oy: number;
+    moved: boolean;
+  } | null>(null);
 
   const getPos = useCallback(() => {
     if (iconPositions[id]) return iconPositions[id]!;
     const surface = document.querySelector('.desktop__surface');
     const w = surface?.clientWidth ?? 800;
-    return defaultIconPosition(index, w);
-  }, [iconPositions, id, index]);
+    return defaultIconPosition(zone, index, w);
+  }, [iconPositions, id, index, zone]);
 
   const pos = getPos();
 
-  const onDragStart = (e: ReactPointerEvent) => {
+  const onPointerDown = (e: ReactPointerEvent) => {
     if (e.button !== 0) return;
-    dragRef.current = { x: e.clientX, y: e.clientY, ox: pos.x, oy: pos.y, moved: false };
-    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+    dragRef.current = {
+      pointerId: e.pointerId,
+      x: e.clientX,
+      y: e.clientY,
+      ox: pos.x,
+      oy: pos.y,
+      moved: false,
+    };
   };
 
-  const onDragMove = (e: ReactPointerEvent) => {
-    if (!dragRef.current) return;
+  const onPointerMove = (e: ReactPointerEvent) => {
+    if (!dragRef.current || dragRef.current.pointerId !== e.pointerId) return;
+
     const dx = e.clientX - dragRef.current.x;
     const dy = e.clientY - dragRef.current.y;
-    if (!dragRef.current.moved && Math.hypot(dx, dy) < DRAG_THRESHOLD) return;
-    dragRef.current.moved = true;
+
+    if (!dragRef.current.moved) {
+      if (Math.hypot(dx, dy) < DRAG_THRESHOLD) return;
+      dragRef.current.moved = true;
+      slotRef.current?.setPointerCapture(e.pointerId);
+    }
+
     const nx = Math.max(8, dragRef.current.ox + dx);
     const ny = Math.max(8, dragRef.current.oy + dy);
     setIconPosition(id, nx, ny);
   };
 
-  const onDragEnd = () => {
+  const onPointerUp = (e: ReactPointerEvent) => {
+    if (!dragRef.current || dragRef.current.pointerId !== e.pointerId) return;
+
+    const moved = dragRef.current.moved;
     dragRef.current = null;
+
+    if (slotRef.current?.hasPointerCapture(e.pointerId)) {
+      slotRef.current.releasePointerCapture(e.pointerId);
+    }
+
+    if (!moved) {
+      if (useDesktopStore.getState().osSounds) playIconOpen();
+      onSelect();
+      onOpen();
+    }
+  };
+
+  const onPointerCancel = (e: ReactPointerEvent) => {
+    if (!dragRef.current || dragRef.current.pointerId !== e.pointerId) return;
+    dragRef.current = null;
+    if (slotRef.current?.hasPointerCapture(e.pointerId)) {
+      slotRef.current.releasePointerCapture(e.pointerId);
+    }
   };
 
   useEffect(() => {
@@ -77,12 +121,24 @@ export function DraggableDesktopIcon({
 
   return (
     <div
+      ref={slotRef}
       className="desktop__icon-slot"
       style={{ left: pos.x, top: pos.y }}
-      onPointerDown={onDragStart}
-      onPointerMove={onDragMove}
-      onPointerUp={onDragEnd}
-      onPointerCancel={onDragEnd}
+      role="button"
+      tabIndex={0}
+      aria-label={shortcut ? `${label}, raccourci ${shortcut}` : label}
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={onPointerUp}
+      onPointerCancel={onPointerCancel}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          if (useDesktopStore.getState().osSounds) playIconOpen();
+          onSelect();
+          onOpen();
+        }
+      }}
     >
       <DesktopIcon
         icon={icon}
@@ -90,8 +146,7 @@ export function DraggableDesktopIcon({
         color={color}
         shortcut={shortcut}
         selected={selected}
-        onSelect={onSelect}
-        onOpen={onOpen}
+        passive
       />
     </div>
   );

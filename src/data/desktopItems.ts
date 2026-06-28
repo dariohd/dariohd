@@ -1,4 +1,5 @@
 import type { DesktopAppId } from './profile';
+import { desktopApps, miniGames } from './profile';
 
 export interface DesktopFolder {
   id: string;
@@ -28,14 +29,6 @@ export const desktopFolders: DesktopFolder[] = [
     appId: 'explorer',
   },
   {
-    id: 'folder-brand',
-    label: 'Bulle ton site',
-    icon: '🌐',
-    color: '#94c878',
-    action: 'url',
-    url: 'https://bulletonsite.com',
-  },
-  {
     id: 'folder-github',
     label: 'GitHub',
     icon: '🐙',
@@ -45,15 +38,33 @@ export const desktopFolders: DesktopFolder[] = [
   },
 ];
 
-/** Positions par défaut — colonne droite du bureau */
-export function defaultIconPosition(index: number, surfaceWidth: number): { x: number; y: number } {
-  const colW = 92;
-  const marginRight = 20;
-  const marginTop = 16;
-  const rowH = 96;
+const COL_W = 88;
+const ROW_H = 92;
+const MARGIN_TOP = 12;
+const MARGIN_RIGHT = 16;
+const GAME_COLS = 3;
+
+export type IconZone = 'app' | 'game';
+
+/** Positions par défaut — apps à droite, jeux en 3 colonnes à leur gauche */
+export function defaultIconPosition(
+  zone: IconZone,
+  indexInZone: number,
+  surfaceWidth: number,
+): { x: number; y: number } {
+  const appColX = Math.max(16, surfaceWidth - COL_W - MARGIN_RIGHT);
+
+  if (zone === 'app') {
+    return { x: appColX, y: MARGIN_TOP + indexInZone * ROW_H };
+  }
+
+  const col = indexInZone % GAME_COLS;
+  const row = Math.floor(indexInZone / GAME_COLS);
+  const x = appColX - (GAME_COLS - col) * COL_W;
+
   return {
-    x: Math.max(16, surfaceWidth - colW - marginRight),
-    y: marginTop + index * rowH,
+    x: Math.max(16, x),
+    y: MARGIN_TOP + row * ROW_H,
   };
 }
 
@@ -67,3 +78,5 @@ export function defaultFolderPosition(index: number, surfaceWidth: number, surfa
     y: Math.max(16, surfaceHeight - 120),
   };
 }
+
+export { desktopApps, miniGames };

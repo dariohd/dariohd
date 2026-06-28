@@ -38,8 +38,8 @@ export function AboutApp() {
           <span>Projets</span>
         </div>
         <div>
-          <strong>{profile.brand}</strong>
-          <span>Marque</span>
+          <strong>{profile.alias}</strong>
+          <span>Studio</span>
         </div>
       </div>
     </div>

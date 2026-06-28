@@ -1,7 +1,7 @@
 import { profile } from '../../data/profile';
 
 export function ContactApp() {
-  const { email, github, linkedin, website } = profile.links;
+  const { email, github, linkedin } = profile.links;
 
   return (
     <div className="app-contact">
@@ -18,16 +18,6 @@ export function ContactApp() {
             <p>{email}</p>
           </div>
         </a>
-
-        {website && (
-          <a href={website} target="_blank" rel="noopener noreferrer" className="contact-card">
-            <span className="contact-card__icon" aria-hidden="true">🌐</span>
-            <div>
-              <strong>{profile.brand}</strong>
-              <p>{website.replace('https://', '')}</p>
-            </div>
-          </a>
-        )}
 
         {github && (
           <a href={github} target="_blank" rel="noopener noreferrer" className="contact-card">
@@ -59,7 +49,7 @@ export function ContactApp() {
       </div>
 
       <p className="app-contact__brand">
-        Propulsé par <strong>{profile.brand}</strong> — sites sur mesure pour artisans et PME en Dordogne et partout en France.
+        Portfolio interactif <strong>{profile.alias}</strong> — développeur web indépendant, {profile.location}.
       </p>
     </div>
   );
