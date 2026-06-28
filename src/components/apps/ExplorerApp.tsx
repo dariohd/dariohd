@@ -29,7 +29,7 @@ const TREE: TreeNode[] = [
     label: 'Documents',
     icon: '📁',
     children: [
-      { id: 'about', label: 'À propos — README.md', icon: '👤', appId: 'about' },
+      { id: 'about', label: 'À propos · README.md', icon: '👤', appId: 'about' },
       { id: 'stack', label: 'stack.json', icon: '⚡', appId: 'stack' },
       { id: 'contact', label: 'contact.vcf', icon: '✉️', appId: 'contact' },
     ],

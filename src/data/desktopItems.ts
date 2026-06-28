@@ -46,7 +46,7 @@ const GAME_COLS = 3;
 
 export type IconZone = 'app' | 'game';
 
-/** Positions par défaut — apps à droite, jeux en 3 colonnes à leur gauche */
+/** Positions par défaut : apps à droite, jeux en 3 colonnes à leur gauche */
 export function defaultIconPosition(
   zone: IconZone,
   indexInZone: number,

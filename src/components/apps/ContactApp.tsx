@@ -42,14 +42,14 @@ export function ContactApp() {
             <span className="contact-card__icon" aria-hidden="true">💼</span>
             <div>
               <strong>LinkedIn</strong>
-              <p>Disponible sur demande — écrivez-moi par email</p>
+              <p>Disponible sur demande. Écrivez-moi par email.</p>
             </div>
           </div>
         )}
       </div>
 
       <p className="app-contact__brand">
-        Portfolio interactif <strong>{profile.alias}</strong> — développeur web indépendant, {profile.location}.
+        Portfolio interactif <strong>{profile.alias}</strong>, développeur web indépendant, {profile.location}.
       </p>
     </div>
   );

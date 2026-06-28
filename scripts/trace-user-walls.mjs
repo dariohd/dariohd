@@ -121,4 +121,4 @@ rect(22, 268, 48, 292, PC);
 
 fs.mkdirSync('public/sprites', { recursive: true });
 fs.writeFileSync(OUT, PNG.sync.write(png));
-console.log(`Written ${OUT} — walk:${walkN} / ${W * H}`);
+console.log(`Written ${OUT} · walk:${walkN} / ${W * H}`);

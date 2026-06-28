@@ -1,4 +1,4 @@
-# Portfolio interactif — documentation technique
+# Portfolio interactif : documentation technique
 
 Portfolio web gamifié de **dariohd** : chambre pixel art rétro + bureau fictif **DHD OS** pour présenter les projets.
 
@@ -70,15 +70,15 @@ npm run dev
 ### Terminal intégré
 
 ```
-help          — liste des commandes
-whoami        — identité
-projects      — liste des projets
-open <id>     — ouvrir une fiche projet
-stack         — ouvrir la stack
-contact       — ouvrir le contact
-studio        — retour chambre
-shutdown      — éteindre → chambre
-clear         — effacer l'écran
+help          : liste des commandes
+whoami        : identité
+projects      : liste des projets
+open <id>     : ouvrir une fiche projet
+stack         : ouvrir la stack
+contact       : ouvrir le contact
+studio        : retour chambre
+shutdown      : éteindre → chambre
+clear         : effacer l'écran
 ```
 
 ---
@@ -123,17 +123,17 @@ npm run build
 
 ---
 
-## Développement — collision (optionnel)
+## Développement : collision (optionnel)
 
 Le masque de collision de la chambre est calibré et versionné. En dev uniquement :
 
-- `?collision=1` — overlay debug des zones
-- `?collision=edit` — éditeur de masque
-- `npm run generate-collision` — régénère `public/sprites/nb2-bedroom-collision.png`
+- `?collision=1` : overlay debug des zones
+- `?collision=edit` : éditeur de masque
+- `npm run generate-collision` : régénère `public/sprites/nb2-bedroom-collision.png`
 
 ---
 
 ## Licence
 
-Projet portfolio — code source disponible sur GitHub.  
+Projet portfolio, code source disponible sur GitHub.  
 Les sprites de la chambre sont des assets pixel rétro à usage non commercial.

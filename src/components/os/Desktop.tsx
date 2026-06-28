@@ -213,7 +213,7 @@ export function Desktop() {
             >
               <p>
                 <strong>Bienvenue sur DHD OS.</strong> Icônes à droite, dossiers en bas.
-                Clic droit sur le bureau pour plus d’options — explore les projets !
+                Clic droit sur le bureau pour plus d’options. Explore les projets !
               </p>
               <button type="button" className="btn btn--primary btn--sm" onClick={() => setWelcomeDismissed(true)}>
                 Compris
@@ -228,7 +228,7 @@ export function Desktop() {
 
       {discovered.size === projects.length && (
         <div className="desktop__achievement" role="status">
-          ★ Collection complète — {projects.length}/{projects.length} projets
+          ★ Collection complète · {projects.length}/{projects.length} projets
         </div>
       )}
 

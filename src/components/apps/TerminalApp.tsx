@@ -10,25 +10,25 @@ interface TermLine {
 }
 
 const HELP = `Commandes disponibles:
-  help          — cette aide
-  whoami        — identité
-  about         — résumé
-  projects      — liste des projets
-  open <id>     — ouvrir un projet
-  explorer      — explorateur de fichiers
-  stack         — ouvrir la stack
-  contact       — ouvrir le contact
-  notes         — bloc-notes
-  settings      — paramètres système
-  clear         — effacer l'écran
-  studio        — retourner à la chambre
-  shutdown      — éteindre le PC`;
+  help          : cette aide
+  whoami        : identité
+  about         : résumé
+  projects      : liste des projets
+  open <id>     : ouvrir un projet
+  explorer      : explorateur de fichiers
+  stack         : ouvrir la stack
+  contact       : ouvrir le contact
+  notes         : bloc-notes
+  settings      : paramètres système
+  clear         : effacer l'écran
+  studio        : retourner à la chambre
+  shutdown      : éteindre le PC`;
 
 export function TerminalApp() {
   const openApp = useOsStore((s) => s.openApp);
   const setPhase = useAppStore((s) => s.setPhase);
   const [lines, setLines] = useState<TermLine[]>([
-    { type: 'out', text: 'DHD OS — Terminal v2.0' },
+    { type: 'out', text: 'DHD OS · Terminal v2.0' },
     { type: 'out', text: 'Tapez "help" pour commencer.' },
   ]);
   const [input, setInput] = useState('');
@@ -61,7 +61,7 @@ export function TerminalApp() {
       case 'whoami':
         setLines((prev) => [
           ...prev,
-          { type: 'out', text: `${profile.name} (@${profile.handle}) — ${profile.title}` },
+          { type: 'out', text: `${profile.name} (@${profile.handle}), ${profile.title}` },
         ]);
         break;
       case 'about':

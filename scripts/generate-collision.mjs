@@ -89,4 +89,4 @@ fs.writeFileSync(
   spritesTs.replace(/COLLISION_MASK_VERSION = \d+/, `COLLISION_MASK_VERSION = ${nextVersion}`),
 );
 
-console.log(`Written ${OUT} — zones from collisionZones.json — mask v${nextVersion}`);
+console.log(`Written ${OUT} · zones from collisionZones.json · mask v${nextVersion}`);

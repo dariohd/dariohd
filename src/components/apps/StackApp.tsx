@@ -16,7 +16,7 @@ export function StackApp() {
     <div className="app-stack">
       <header className="app-stack__header">
         <h2>Stack & compétences</h2>
-        <p>Full Stack, web, langages, 3D, montage vidéo — un profil polyvalent.</p>
+        <p>Full Stack, web, langages, 3D, montage vidéo. Un profil polyvalent.</p>
       </header>
 
       {CATEGORY_ORDER.map((cat, catIdx) => {

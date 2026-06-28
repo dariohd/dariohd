@@ -142,7 +142,7 @@ export function MinesweeperGame() {
         )}
       </div>
       {won && <p className="mini-game__win">🎉 Gagné !</p>}
-      {lost && <p className="mini-game__lose">💥 Perdu — réessayez</p>}
+      {lost && <p className="mini-game__lose">💥 Perdu. Réessayez.</p>}
     </div>
   );
 }

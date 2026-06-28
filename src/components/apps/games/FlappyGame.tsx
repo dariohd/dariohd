@@ -230,7 +230,7 @@ export function FlappyGame() {
           />
           {over && (
             <div className="mini-game__overlay">
-              <p>Game Over — {stateRef.current.score} pts</p>
+              <p>Game Over · {stateRef.current.score} pts</p>
               <button type="button" className="btn btn--primary btn--sm" onClick={restart}>
                 Rejouer
               </button>

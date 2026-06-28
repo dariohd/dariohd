@@ -2,7 +2,7 @@
   "name": "dariohd",
   "version": "2.0.0",
   "private": true,
-  "description": "Portfolio interactif dariohd — chambre pixel + DHD OS",
+  "description": "Portfolio interactif dariohd, chambre pixel + DHD OS",
   "type": "module",
   "scripts": {
     "dev": "vite",

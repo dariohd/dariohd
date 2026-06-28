@@ -9,13 +9,13 @@ export function NotesApp() {
     <div className="app-notes">
       <header className="app-notes__header">
         <h2>Notes DHD</h2>
-        <p>Bloc-notes local — sauvegardé sur ce poste</p>
+        <p>Bloc-notes local, sauvegardé sur ce poste</p>
       </header>
       <textarea
         className="app-notes__editor"
         value={notes}
         onChange={(e) => setNotes(e.target.value)}
-        placeholder={`Idées, contacts, rappels…\n\n— ${profile.handle}`}
+        placeholder={`Idées, contacts, rappels…\n\n${profile.handle}`}
         spellCheck
       />
       <footer className="app-notes__footer">

@@ -1,6 +1,6 @@
 # dariohd
 
-Salut, je suis **Hugo Davion** — **dariohd** / **DHD** sur GitHub.
+Salut, je suis **Hugo Davion**, alias **dariohd** / **DHD** sur GitHub.
 
 Développeur web indépendant basé en **Dordogne, France**. Je conçois des **sites vitrines**, des **PWA métier** et parfois des **expériences ludiques** (Canvas, WebGL, Babylon.js) pour des clients locaux et mes propres produits.
 
@@ -8,9 +8,9 @@ Développeur web indépendant basé en **Dordogne, France**. Je conçois des **s
 
 ## Ce que je fais
 
-- **Sites vitrines** — landing pages, SEO, réservation, multilingue
-- **Apps métier** — tableaux de bord, PWA offline-first, outils internes
-- **Expériences interactives** — portfolios gamifiés, jeux navigateur, widgets IA
+- **Sites vitrines** : landing pages, SEO, réservation, multilingue
+- **Apps métier** : tableaux de bord, PWA offline-first, outils internes
+- **Expériences interactives** : portfolios gamifiés, jeux navigateur, widgets IA
 
 ---
 

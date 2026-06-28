@@ -8,12 +8,12 @@ export const profile = {
   alias: 'DHD',
   handle: 'dariohd',
   title: 'Développeur web & créateur d\'expériences interactives',
-  tagline: 'Sites vitrines, PWA métier et jeux navigateur — du pixel au WebGL.',
+  tagline: 'Sites vitrines, PWA métier et jeux navigateur, du pixel au WebGL.',
   location: 'Dordogne, France',
   brand: 'dariohd',
   bio: [
     'Je conçois des sites web sur mesure pour des clients locaux et des produits SaaS légers.',
-    'Mon terrain de jeu : React, TypeScript, PWA, Vercel — et parfois Babylon.js quand il faut pousser le ludique.',
+    'Mon terrain de jeu : React, TypeScript, PWA, Vercel, et parfois Babylon.js quand il faut pousser le ludique.',
     'Chaque projet est pensé pour être rapide, accessible et agréable à utiliser au quotidien.',
   ],
   links: {

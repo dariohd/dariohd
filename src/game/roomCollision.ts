@@ -1,6 +1,6 @@
 /**
  * Collisions pixel-perfect via nb2-bedroom-collision.png
- * (éditeur : ?collision=edit — ou scripts/generate-collision.mjs en secours)
+ * (éditeur : ?collision=edit, ou scripts/generate-collision.mjs en secours)
  *
  * Vert = praticable | Rouge = bloqué | Bleu = escaliers | Magenta = zone PC
  */
@@ -18,11 +18,11 @@ export const PC_CENTER = { x: 38, y: 284 };
 export const PC_INTERACT_RADIUS = 42;
 export const PLAYER_START = { x: 158, y: 198 };
 
-/** Zone escaliers — centre + rayon (comme le PC). */
+/** Zone escaliers : centre + rayon (comme le PC). */
 export const STAIRS_CENTER = { x: 296, y: 95 };
 export const STAIRS_INTERACT_RADIUS = 75;
 
-/** @deprecated rectangulaire — préférer isNearStairs */
+/** @deprecated rectangulaire, préférer isNearStairs */
 export const STAIRS_ZONE = { x0: 275, y0: 45, x1: 318, y1: 155 };
 
 let maskData: Uint8ClampedArray | null = null;
@@ -149,7 +149,7 @@ export function drawCollisionDebug(ctx: CanvasRenderingContext2D): void {
   if (!maskData) return;
 
   ctx.save();
-  // Télé — overlay opaque pour que le cadre beige ne fasse plus « trou »
+  // Télé : overlay opaque pour que le cadre beige ne fasse plus « trou »
   ctx.fillStyle = 'rgba(255, 40, 40, 0.72)';
   ctx.fillRect(TV_ZONE.x0, TV_ZONE.y0, TV_ZONE.x1 - TV_ZONE.x0 + 1, TV_ZONE.y1 - TV_ZONE.y0 + 1);
   ctx.fillStyle = 'rgba(255, 120, 40, 0.72)';

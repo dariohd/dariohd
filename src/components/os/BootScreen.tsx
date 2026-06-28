@@ -8,11 +8,11 @@ import { playBootComplete, playBootTick } from '../../game/audio';
 const BOOT_LINES = [
   'Connexion depuis la chambre… OK',
   `Session locale ${profile.handle}@${profile.alias}… OK`,
-  `${profile.alias} OS v2.0 — noyau stable`,
+  `${profile.alias} OS v2.0 · noyau stable`,
   'Gestionnaire de fenêtres… OK',
   `Indexation portfolio (${projects.length} projets)… OK`,
   'Réseau Vercel… OK',
-  `Bureau prêt — bienvenue ${profile.handle}.`,
+  `Bureau prêt. Bienvenue ${profile.handle}.`,
 ];
 
 export function BootScreen() {

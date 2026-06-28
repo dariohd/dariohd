@@ -882,7 +882,7 @@ kbd {
 .os-window__btn--min:hover { background: rgba(240, 192, 96, 0.25); }
 .os-window__btn--max:hover { background: rgba(148, 200, 120, 0.22); }
 
-/* legacy dots — removed */
+/* legacy dots, removed */
 .os-window__ctrl {
   display: none;
 }

@@ -25,7 +25,7 @@ const DEFAULTS: Record<DesktopAppId, { title: string; width: number; height: num
   stack: { title: 'Stack', width: 480, height: 520 },
   contact: { title: 'Contact', width: 440, height: 420 },
   notes: { title: 'Notes DHD', width: 480, height: 400 },
-  terminal: { title: `Terminal — ${profile.handle}@${profile.alias}`, width: 640, height: 420 },
+  terminal: { title: `Terminal · ${profile.handle}@${profile.alias}`, width: 640, height: 420 },
   settings: { title: 'Paramètres', width: 480, height: 520 },
   'game-pong': { title: 'Pong', width: 700, height: 500 },
   'game-snake': { title: 'Snake', width: 560, height: 500 },
