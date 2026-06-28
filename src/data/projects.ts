@@ -50,9 +50,9 @@ export const projects: Project[] = [
     tagline: 'Charpente & construction bois',
     description:
       "Site professionnel pour une entreprise de charpente à Jumilhac-le-Grand : métiers, zone d'intervention, galerie de chantiers filtrable et devis.",
-    url: 'https://www.etcbc-charpente.fr/',
+    url: 'https://www.etcbc-charpente.com/',
     repo: 'https://github.com/dariohd/ETCBC',
-    thumb: 'https://www.etcbc-charpente.fr/images/gallery/realisation-18.webp',
+    thumb: 'https://www.etcbc-charpente.com/images/gallery/realisation-18.webp',
     preview: 'iframe',
     tags: ['Site pro', 'Galerie', 'SEO local', 'JavaScript'],
     color: '#c8a070',
@@ -60,12 +60,12 @@ export const projects: Project[] = [
     category: 'client',
   },
   {
-    id: 'rochebonne',
-    name: 'Domaine de Rochebonne',
+    id: 'domainederoche',
+    name: 'Domaine de Roche',
     tagline: 'Gîtes & château en Charente-Maritime',
     description:
       'Château privatisé et 9 gîtes dans un parc de 13 000 m². Site Next.js multilingue avec réservation, animations Framer Motion et SEO.',
-    url: 'https://ledomainederochebonne.com/',
+    url: 'https://domainederoche.vercel.app/',
     repo: 'https://github.com/dariohd/DomaineDeRochebonne',
     thumb: 'https://l.icdbcdn.com/oh/f2bbba72-1407-4f30-9f44-bebc70b6384e.jpg?w=800',
     preview: 'thumbnail',

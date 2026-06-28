@@ -57,8 +57,8 @@ Développeur full stack, web et technicien réseaux. En alternance chez **CGI** 
 |--------|-------------|------|
 | La Maison d'Ela | Chambre d'hôtes, Dordogne | [lamaisondela.com](https://lamaisondela.com) |
 | Quai des Rêves | Maison d'hôtes, Bretagne | [quai-des-reves.vercel.app](https://quai-des-reves.vercel.app/) |
-| ETCBC | Charpente & construction bois | [etcbc-charpente.fr](https://www.etcbc-charpente.fr/) |
-| Domaine de Rochebonne | Gîtes & château, Charente-Maritime | [ledomainederochebonne.com](https://ledomainederochebonne.com/) |
+| ETCBC | Charpente & construction bois | [etcbc-charpente.com](https://www.etcbc-charpente.com/) |
+| Domaine de Roche | Gîtes & château, Charente-Maritime | [domainederoche.vercel.app](https://domainederoche.vercel.app/) |
 | SQCDP | PWA pilotage industriel (Daily, PDCA) | [sqcdp.vercel.app](https://sqcdp.vercel.app/) |
 | Bulle | Widget IA pour sites web | [bulle-chatbot.vercel.app](https://bulle-chatbot.vercel.app) |
 | Bulle ton site | Agence sites vitrines artisans | [bulletonsite.com](https://bulletonsite.com) |
