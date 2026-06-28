@@ -15,8 +15,11 @@ const HELP = `Commandes disponibles:
   about         — résumé
   projects      — liste des projets
   open <id>     — ouvrir un projet
+  explorer      — explorateur de fichiers
   stack         — ouvrir la stack
   contact       — ouvrir le contact
+  notes         — bloc-notes
+  settings      — paramètres système
   clear         — effacer l'écran
   studio        — retourner à la chambre
   shutdown      — éteindre le PC`;
@@ -96,6 +99,18 @@ export function TerminalApp() {
       case 'contact':
         openApp('contact');
         setLines((prev) => [...prev, { type: 'out', text: `Email: ${profile.links.email}` }]);
+        break;
+      case 'explorer':
+        openApp('explorer');
+        setLines((prev) => [...prev, { type: 'out', text: 'Ouverture Explorateur…' }]);
+        break;
+      case 'notes':
+        openApp('notes');
+        setLines((prev) => [...prev, { type: 'out', text: 'Ouverture Notes DHD…' }]);
+        break;
+      case 'settings':
+        openApp('settings');
+        setLines((prev) => [...prev, { type: 'out', text: 'Ouverture Paramètres…' }]);
         break;
       case 'studio':
         setLines((prev) => [...prev, { type: 'out', text: 'Fermeture de la session DHD OS…' }]);

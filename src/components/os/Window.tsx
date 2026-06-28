@@ -3,7 +3,8 @@ import { motion } from 'framer-motion';
 import type { OsWindow } from '../../store/osStore';
 import { useOsStore } from '../../store/osStore';
 
-import { playWindowClose } from '../../game/audio';
+import { playWindowClose as playWindowCloseRaw } from '../../game/audio';
+import { useDesktopStore } from '../../store/desktopStore';
 
 interface WindowProps {
   win: OsWindow;
@@ -109,7 +110,7 @@ export function Window({ win, children }: WindowProps) {
             aria-label="Fermer"
             onClick={(e) => {
               e.stopPropagation();
-              playWindowClose();
+              if (useDesktopStore.getState().osSounds) playWindowCloseRaw();
               closeWindow(win.id);
             }}
           />

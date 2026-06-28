@@ -2,6 +2,11 @@ import { useEffect, useState } from 'react';
 import { desktopApps } from '../data/profile';
 import { useOsStore } from '../store/osStore';
 import { playWindowClose, playWindowOpen } from '../game/audio';
+import { useDesktopStore } from '../store/desktopStore';
+
+function osSoundsOn() {
+  return useDesktopStore.getState().osSounds;
+}
 
 export function useDesktopShortcuts() {
   const openApp = useOsStore((s) => s.openApp);
@@ -22,7 +27,7 @@ export function useDesktopShortcuts() {
       if (e.key === 'Escape') {
         const top = [...windows].sort((a, b) => b.zIndex - a.zIndex)[0];
         if (top) {
-          playWindowClose();
+          if (osSoundsOn()) playWindowClose();
           closeWindow(top.id);
         } else {
           setShowHelp(false);
@@ -35,11 +40,11 @@ export function useDesktopShortcuts() {
         return;
       }
 
-      if (e.altKey && e.key >= '1' && e.key <= '5') {
+      if (e.altKey && e.key >= '1' && e.key <= '8') {
         const idx = Number(e.key) - 1;
         const app = desktopApps[idx];
         if (app) {
-          playWindowOpen();
+          if (osSoundsOn()) playWindowOpen();
           openApp(app.id);
         }
       }

@@ -43,7 +43,7 @@ export function TitleScreen() {
 
         <div className="title-screen__meta">
           <span>{discovered.size}/{projects.length} projets découverts</span>
-          <span>Alt+1–5 raccourcis OS</span>
+          <span>Alt+1–8 raccourcis OS</span>
         </div>
       </motion.div>
     </div>

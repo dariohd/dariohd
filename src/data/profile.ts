@@ -54,10 +54,13 @@ export const skillCategories: Record<Skill['category'], string> = {
 
 export const desktopApps = [
   { id: 'projects' as const, label: 'Projets', icon: '📁', color: '#58a8f0' },
+  { id: 'explorer' as const, label: 'Explorateur', icon: '🗂️', color: '#c8a070' },
   { id: 'about' as const, label: 'À propos', icon: '👤', color: '#f0a8c8' },
   { id: 'stack' as const, label: 'Stack', icon: '⚡', color: '#a868e8' },
   { id: 'contact' as const, label: 'Contact', icon: '✉️', color: '#94c878' },
-  { id: 'terminal' as const, label: 'Terminal', icon: '⌨️', color: '#c8a070' },
+  { id: 'notes' as const, label: 'Notes', icon: '📝', color: '#f0c060' },
+  { id: 'terminal' as const, label: 'Terminal', icon: '⌨️', color: '#8898b0' },
+  { id: 'settings' as const, label: 'Paramètres', icon: '⚙️', color: '#98a8c8' },
 ];
 
 export type DesktopAppId = (typeof desktopApps)[number]['id'] | 'project-detail';

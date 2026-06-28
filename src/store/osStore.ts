@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import type { DesktopAppId } from '../data/profile';
 import { profile } from '../data/profile';
 import { playWindowOpen } from '../game/audio';
+import { useDesktopStore } from './desktopStore';
 
 export interface OsWindow {
   id: string;
@@ -18,12 +19,15 @@ export interface OsWindow {
 }
 
 const DEFAULTS: Record<DesktopAppId, { title: string; width: number; height: number }> = {
-  projects: { title: 'Projets', width: 720, height: 520 },
+  projects: { title: 'Projets', width: 760, height: 540 },
+  explorer: { title: 'Explorateur', width: 720, height: 500 },
   about: { title: 'À propos', width: 520, height: 480 },
   stack: { title: 'Stack', width: 480, height: 520 },
-  contact: { title: 'Contact', width: 420, height: 400 },
+  contact: { title: 'Contact', width: 440, height: 420 },
+  notes: { title: 'Notes DHD', width: 480, height: 400 },
   terminal: { title: `Terminal — ${profile.handle}@${profile.alias}`, width: 640, height: 420 },
-  'project-detail': { title: 'Projet', width: 680, height: 560 },
+  settings: { title: 'Paramètres', width: 480, height: 520 },
+  'project-detail': { title: 'Projet', width: 700, height: 560 },
 };
 
 let windowCounter = 0;
@@ -32,6 +36,18 @@ let topZ = 10;
 function nextId(): string {
   windowCounter += 1;
   return `win-${windowCounter}`;
+}
+
+function viewportWidth(): number {
+  return typeof window !== 'undefined' ? window.innerWidth : 1200;
+}
+
+function cascadeOffset(index: number, winWidth: number): { x: number; y: number } {
+  const vw = viewportWidth();
+  const baseX = Math.max(24, (vw - winWidth) / 2);
+  const baseY = 52;
+  const step = index % 6;
+  return { x: baseX + step * 22, y: baseY + step * 22 };
 }
 
 interface OsState {
@@ -43,11 +59,8 @@ interface OsState {
   resizeWindow: (id: string, width: number, height: number) => void;
   toggleMinimize: (id: string) => void;
   toggleMaximize: (id: string) => void;
+  minimizeAllWindows: () => void;
   closeAllWindows: () => void;
-}
-
-function cascadeOffset(index: number): { x: number; y: number } {
-  return { x: 80 + (index % 5) * 28, y: 48 + (index % 5) * 28 };
 }
 
 export const useOsStore = create<OsState>((set, get) => ({
@@ -68,16 +81,12 @@ export const useOsStore = create<OsState>((set, get) => ({
     }
 
     const def = DEFAULTS[appId];
-    const title =
-      appId === 'project-detail' && payload?.projectId
-        ? def.title
-        : def.title;
     topZ += 1;
-    const offset = cascadeOffset(get().windows.length);
+    const offset = cascadeOffset(get().windows.length, def.width);
     const win: OsWindow = {
       id: nextId(),
       appId,
-      title,
+      title: def.title,
       x: offset.x,
       y: offset.y,
       width: def.width,
@@ -88,7 +97,7 @@ export const useOsStore = create<OsState>((set, get) => ({
       payload,
     };
     set({ windows: [...get().windows, win] });
-    playWindowOpen();
+    if (useDesktopStore.getState().osSounds) playWindowOpen();
   },
 
   closeWindow: (id) => set({ windows: get().windows.filter((w) => w.id !== id) }),
@@ -129,6 +138,12 @@ export const useOsStore = create<OsState>((set, get) => ({
       windows: get().windows.map((w) =>
         w.id === id ? { ...w, maximized: !w.maximized } : w,
       ),
+    });
+  },
+
+  minimizeAllWindows: () => {
+    set({
+      windows: get().windows.map((w) => ({ ...w, minimized: true })),
     });
   },
 

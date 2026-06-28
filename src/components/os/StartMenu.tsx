@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { desktopApps, profile } from '../../data/profile';
 import type { DesktopAppId } from '../../data/profile';
 import { useOsStore } from '../../store/osStore';
@@ -13,9 +13,13 @@ interface StartMenuProps {
 export function StartMenu({ open, onClose, onStudio, onShutdown }: StartMenuProps) {
   const openApp = useOsStore((s) => s.openApp);
   const menuRef = useRef<HTMLDivElement>(null);
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
-    if (!open) return;
+    if (!open) {
+      setQuery('');
+      return;
+    }
     const onPointer = (e: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(e.target as Node)) onClose();
     };
@@ -37,6 +41,10 @@ export function StartMenu({ open, onClose, onStudio, onShutdown }: StartMenuProp
     onClose();
   };
 
+  const filtered = desktopApps.filter((app) =>
+    app.label.toLowerCase().includes(query.toLowerCase()),
+  );
+
   return (
     <div className="start-menu" ref={menuRef} role="menu" aria-label="Menu Démarrer">
       <div className="start-menu__header">
@@ -47,22 +55,40 @@ export function StartMenu({ open, onClose, onStudio, onShutdown }: StartMenuProp
         </div>
       </div>
 
+      <div className="start-menu__search">
+        <input
+          type="search"
+          placeholder="Rechercher une application…"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          aria-label="Rechercher"
+          autoFocus
+        />
+      </div>
+
       <div className="start-menu__apps">
-        {desktopApps.map((app, i) => (
-          <button
-            key={app.id}
-            type="button"
-            className="start-menu__item"
-            role="menuitem"
-            onClick={() => launch(app.id)}
-          >
-            <span className="start-menu__icon" style={{ background: `${app.color}33` }}>
-              {app.icon}
-            </span>
-            <span>{app.label}</span>
-            <kbd>Alt+{i + 1}</kbd>
-          </button>
-        ))}
+        {filtered.length === 0 ? (
+          <p className="start-menu__empty">Aucune application trouvée.</p>
+        ) : (
+          filtered.map((app) => {
+            const idx = desktopApps.findIndex((a) => a.id === app.id);
+            return (
+              <button
+                key={app.id}
+                type="button"
+                className="start-menu__item"
+                role="menuitem"
+                onClick={() => launch(app.id)}
+              >
+                <span className="start-menu__icon" style={{ background: `${app.color}33` }}>
+                  {app.icon}
+                </span>
+                <span>{app.label}</span>
+                {idx >= 0 && idx < 8 && <kbd>Alt+{idx + 1}</kbd>}
+              </button>
+            );
+          })
+        )}
       </div>
 
       <div className="start-menu__footer">

@@ -1,14 +1,19 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { desktopApps } from '../../data/profile';
+import { desktopFolders } from '../../data/desktopItems';
 import { projects } from '../../data/projects';
 import { useAppStore } from '../../store/appStore';
+import { useDesktopStore } from '../../store/desktopStore';
 import { useOsStore } from '../../store/osStore';
 import { useDesktopShortcuts } from '../../hooks/useDesktopShortcuts';
 import { useFocusTrap } from '../../hooks/useFocusTrap';
-import { playShutdown } from '../../game/audio';
+import { playIconOpen, playShutdown } from '../../game/audio';
 import { DiscoveryToast } from '../DiscoveryToast';
-import { DesktopIcon } from './DesktopIcon';
+import { DesktopContextMenu } from './DesktopContextMenu';
+import { DesktopFolder } from './DesktopFolder';
+import { DesktopWidgets } from './DesktopWidgets';
+import { DraggableDesktopIcon } from './DraggableDesktopIcon';
 import { Taskbar } from './Taskbar';
 import { Window } from './Window';
 import { AppContent } from '../apps/AppContent';
@@ -20,6 +25,11 @@ export function Desktop() {
   const discovered = useAppStore((s) => s.discovered);
   const resetProgress = useAppStore((s) => s.resetProgress);
   const setPhase = useAppStore((s) => s.setPhase);
+  const wallpaper = useDesktopStore((s) => s.wallpaper);
+  const widgetsVisible = useDesktopStore((s) => s.widgetsVisible);
+  const contextMenu = useDesktopStore((s) => s.contextMenu);
+  const openContextMenu = useDesktopStore((s) => s.openContextMenu);
+  const closeContextMenu = useDesktopStore((s) => s.closeContextMenu);
   const { showHelp, setShowHelp } = useDesktopShortcuts();
   const [clock, setClock] = useState('');
   const [selectedIcon, setSelectedIcon] = useState<string | null>(null);
@@ -27,6 +37,7 @@ export function Desktop() {
   const [welcomeDismissed, setWelcomeDismissed] = useState(false);
   const initialProjectsOpened = useRef(false);
   const helpPanelRef = useRef<HTMLDivElement>(null);
+  const surfaceRef = useRef<HTMLElement>(null);
 
   useFocusTrap(helpPanelRef, showHelp, () => setShowHelp(false));
 
@@ -39,13 +50,26 @@ export function Desktop() {
     return () => clearInterval(id);
   }, []);
 
-  // Ouvre Projets une seule fois à l'arrivée sur le bureau (pas à chaque fermeture)
   useEffect(() => {
     if (initialProjectsOpened.current || windows.length > 0) return;
     initialProjectsOpened.current = true;
-    const t = setTimeout(() => openApp('projects'), 400);
+    const t = setTimeout(() => openApp('projects'), 500);
     return () => clearTimeout(t);
   }, [openApp, windows.length]);
+
+  useEffect(() => {
+    if (!contextMenu) return;
+    const close = (e: Event) => {
+      if ((e.target as HTMLElement).closest('.desktop-context')) return;
+      closeContextMenu();
+    };
+    window.addEventListener('mousedown', close);
+    window.addEventListener('scroll', close, true);
+    return () => {
+      window.removeEventListener('mousedown', close);
+      window.removeEventListener('scroll', close, true);
+    };
+  }, [contextMenu, closeContextMenu]);
 
   const goToRoom = useCallback(() => {
     closeAllWindows();
@@ -62,8 +86,24 @@ export function Desktop() {
     }, 900);
   }, [closeAllWindows, setPhase, shuttingDown]);
 
+  const onSurfaceContextMenu = (e: React.MouseEvent) => {
+    if ((e.target as HTMLElement).closest('.os-window, .desktop__icon-slot, .desktop-folder, .desktop-widgets')) {
+      return;
+    }
+    e.preventDefault();
+    const rect = surfaceRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    openContextMenu(e.clientX - rect.left, e.clientY - rect.top);
+  };
+
+  const openFolder = (folder: (typeof desktopFolders)[number]) => {
+    playIconOpen();
+    if (folder.action === 'app' && folder.appId) openApp(folder.appId);
+    else if (folder.url) window.open(folder.url, '_blank', 'noopener,noreferrer');
+  };
+
   return (
-    <div className="desktop">
+    <div className={`desktop desktop--wallpaper-${wallpaper}`}>
       <div className="desktop__wallpaper" aria-hidden="true">
         <div className="desktop__grid" />
         <div className="desktop__orb desktop__orb--1" />
@@ -75,33 +115,53 @@ export function Desktop() {
         <span className="desktop__menubar-brand">
           <span className="desktop__menubar-dot" /> DHD OS
         </span>
-        <nav className="desktop__menubar-nav">
+        <nav className="desktop__menubar-nav" aria-label="Menu principal">
           <button type="button" onClick={() => openApp('projects')}>Projets</button>
+          <button type="button" onClick={() => openApp('explorer')}>Explorateur</button>
           <button type="button" onClick={() => openApp('about')}>À propos</button>
           <button type="button" onClick={() => openApp('terminal')}>Terminal</button>
           <button type="button" onClick={goToRoom}>Chambre</button>
           <button type="button" onClick={() => setShowHelp(true)} title="Raccourcis">?</button>
         </nav>
         <div className="desktop__menubar-right">
-          <span className="desktop__progress">
-            {discovered.size}/{projects.length}
+          <span className="desktop__progress" title="Projets découverts">
+            ★ {discovered.size}/{projects.length}
           </span>
           <span className="desktop__clock">{clock}</span>
         </div>
       </header>
 
-      <main className="desktop__surface" onClick={() => setSelectedIcon(null)}>
-        <div className="desktop__icons">
-          {desktopApps.map((app, i) => (
-            <DesktopIcon
-              key={app.id}
-              icon={app.icon}
-              label={app.label}
-              color={app.color}
-              shortcut={`Alt+${i + 1}`}
-              selected={selectedIcon === app.id}
-              onSelect={() => setSelectedIcon(app.id)}
-              onOpen={() => openApp(app.id)}
+      <main
+        ref={surfaceRef}
+        className="desktop__surface"
+        onClick={() => { setSelectedIcon(null); closeContextMenu(); }}
+        onContextMenu={onSurfaceContextMenu}
+      >
+        {widgetsVisible && <DesktopWidgets />}
+
+        {desktopApps.map((app, i) => (
+          <DraggableDesktopIcon
+            key={app.id}
+            id={app.id}
+            icon={app.icon}
+            label={app.label}
+            color={app.color}
+            shortcut={i < 8 ? `Alt+${i + 1}` : undefined}
+            index={i}
+            selected={selectedIcon === app.id}
+            onSelect={() => setSelectedIcon(app.id)}
+            onOpen={() => openApp(app.id)}
+          />
+        ))}
+
+        <div className="desktop__folders" aria-label="Dossiers bureau">
+          {desktopFolders.map((folder) => (
+            <DesktopFolder
+              key={folder.id}
+              icon={folder.icon}
+              label={folder.label}
+              color={folder.color}
+              onOpen={() => openFolder(folder)}
             />
           ))}
         </div>
@@ -111,6 +171,14 @@ export function Desktop() {
             <AppContent win={win} />
           </Window>
         ))}
+
+        {contextMenu && (
+          <DesktopContextMenu
+            x={contextMenu.x}
+            y={contextMenu.y}
+            onClose={closeContextMenu}
+          />
+        )}
 
         <AnimatePresence>
           {!welcomeDismissed && discovered.size === 0 && (
@@ -122,8 +190,8 @@ export function Desktop() {
               role="status"
             >
               <p>
-                <strong>Bienvenue sur DHD OS.</strong> Explore les projets dans la fenêtre
-                ouverte — chaque fiche visitée est ajoutée à ta collection.
+                <strong>Bienvenue sur DHD OS.</strong> Icônes à droite, dossiers en bas.
+                Clic droit sur le bureau pour plus d’options — explore les projets !
               </p>
               <button type="button" className="btn btn--ghost btn--sm" onClick={() => setWelcomeDismissed(true)}>
                 Compris
@@ -161,11 +229,11 @@ export function Desktop() {
           >
             <h3>Raccourcis DHD OS</h3>
             <ul>
-              <li><kbd>Alt</kbd> + <kbd>1–5</kbd> Ouvrir une app</li>
+              <li><kbd>Alt</kbd> + <kbd>1–8</kbd> Ouvrir une app</li>
               <li><kbd>Échap</kbd> Fermer la fenêtre active</li>
               <li><kbd>?</kbd> Afficher cette aide</li>
-              <li>Double-clic icône bureau Ouvrir app</li>
-              <li>Glisser coin bas-droit Redimensionner fenêtre</li>
+              <li>Double-clic icône Ouvrir · Glisser pour déplacer</li>
+              <li>Clic droit bureau Menu contextuel</li>
               <li>Terminal <code>studio</code> Retour chambre</li>
             </ul>
             <button type="button" className="btn btn--ghost btn--sm" onClick={() => setShowHelp(false)}>

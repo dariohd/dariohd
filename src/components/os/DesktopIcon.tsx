@@ -1,5 +1,6 @@
 import { useState, type PointerEvent as ReactPointerEvent } from 'react';
-import { playIconOpen } from '../../game/audio';
+import { playIconOpen as playIconOpenRaw } from '../../game/audio';
+import { useDesktopStore } from '../../store/desktopStore';
 
 interface DesktopIconProps {
   icon: string;
@@ -15,7 +16,7 @@ export function DesktopIcon({ icon, label, color, shortcut, selected, onSelect, 
   const [pressed, setPressed] = useState(false);
 
   const handleOpen = () => {
-    playIconOpen();
+    if (useDesktopStore.getState().osSounds) playIconOpenRaw();
     if (typeof navigator !== 'undefined' && navigator.vibrate) {
       navigator.vibrate(12);
     }
