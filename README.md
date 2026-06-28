@@ -2,6 +2,11 @@
 
 **Hugo Davion** · développeur full stack · alias **dariohd** / **DHD**
 
+> **Documentation technique du site** : [docs/SITE.md](./docs/SITE.md) (architecture React, DHD OS, scène pixel, déploiement)
+
+| **Dépôt** | [github.com/dariohd/dariohd](https://github.com/dariohd/dariohd) |
+| **Stack** | React 18, TypeScript, Vite, Zustand, Framer Motion, Canvas 2D |
+
 Développeur full stack, web et technicien réseaux. En alternance chez **CGI** (TypeScript, Java Spring, PostgreSQL) et en cycle ingénieur **RIOC** à UniLaSalle Amiens. Je conçois aussi des sites vitrines, PWA métier et expériences ludiques en indépendant.
 
 ---
