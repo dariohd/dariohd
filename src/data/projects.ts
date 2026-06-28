@@ -66,7 +66,7 @@ export const projects: Project[] = [
     description:
       'Château privatisé et 9 gîtes dans un parc de 13 000 m². Site Next.js multilingue avec réservation, animations Framer Motion et SEO.',
     url: 'https://domainederoche.vercel.app/',
-    repo: 'https://github.com/dariohd/DomaineDeRochebonne',
+    repo: 'https://github.com/dariohd/DomaineDeRoche',
     thumb: 'https://l.icdbcdn.com/oh/f2bbba72-1407-4f30-9f44-bebc70b6384e.jpg?w=800',
     preview: 'thumbnail',
     tags: ['Next.js', 'React 19', 'i18n', 'Framer Motion'],
