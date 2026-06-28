@@ -224,7 +224,7 @@ export function RoomScene() {
   return (
     <div className={`room-scene${booting ? ' room-scene--booting' : ''}${exiting ? ' room-scene--exiting' : ''}`}>
       <header className="room-scene__header">
-        <span className="room-scene__brand">Chambre · DHD OS</span>
+        <span className="room-scene__brand">DHD OS</span>
         <button type="button" className="btn btn--ghost btn--sm" onClick={() => setPhase('title')}>
           ← Menu
         </button>
@@ -241,7 +241,7 @@ export function RoomScene() {
             <canvas
               ref={canvasRef}
               className="room-scene__canvas"
-              aria-label="Chambre pixel"
+              aria-label="Scène d'exploration pixel"
               onClick={handleCanvasClick}
             />
 
@@ -283,12 +283,21 @@ export function RoomScene() {
 
         {loaded && !hintDismissed && (
           <div className="room-scene__help">
-            <p>
-              Escaliers (haut-droite) · <kbd>E</kbd> ou <kbd>↑</kbd>/<kbd>↓</kbd> · PC · <kbd>E</kbd> ou clic
-            </p>
+            <div className="room-scene__help-text">
+              <p className="room-scene__help-title">Accédez au PC</p>
+              <p>
+                Flèches ou ZQSD pour vous déplacer · <kbd>E</kbd> ou clic sur le PC pour ouvrir le bureau
+              </p>
+            </div>
             <button type="button" className="btn btn--ghost btn--sm" onClick={dismissHint}>
               OK
             </button>
+          </div>
+        )}
+
+        {loaded && hintDismissed && !booting && !exiting && (
+          <div className="room-scene__hint" aria-live="polite">
+            Accédez au PC
           </div>
         )}
       </div>

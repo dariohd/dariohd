@@ -19,15 +19,15 @@ export function TitleScreen() {
         transition={{ duration: 0.6, ease: 'easeOut' }}
       >
         <div className="title-screen__logo-mark">{profile.alias}</div>
-        <p className="title-screen__eyebrow">Portfolio interactif · {profile.handle}</p>
+        <p className="title-screen__eyebrow">Portfolio interactif</p>
         <h1 className="title-screen__title">{profile.name}</h1>
         <p className="title-screen__subtitle">
-          Entrez dans la chambre, allumez le PC et explorez mes projets web.
+          Déplacez-vous dans la scène, accédez au PC et explorez mes projets web.
         </p>
 
         <div className="title-screen__actions">
           <button type="button" className="btn btn--primary" onClick={() => setPhase('room')}>
-            ▶ Entrer dans la chambre
+            ▶ Jouer
           </button>
           <button
             type="button"

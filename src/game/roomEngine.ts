@@ -231,7 +231,7 @@ export function renderRoom(
     ctx.beginPath();
     ctx.arc(PC_CENTER.x, PC_CENTER.y, 12 + pulse * 3, 0, Math.PI * 2);
     ctx.fill();
-    drawHint(ctx, PC_CENTER.x, PC_CENTER.y - 28, 'E · PC', '#58a8f0');
+    drawHint(ctx, PC_CENTER.x, PC_CENTER.y - 28, 'Accédez au PC · E', '#58a8f0');
   }
 
   ctx.setTransform(1, 0, 0, 1, 0, 0);

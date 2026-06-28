@@ -401,6 +401,36 @@ kbd {
   max-width: 90vw;
 }
 
+.room-scene__help-text {
+  text-align: left;
+}
+
+.room-scene__help-title {
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 0.2rem;
+}
+
+.room-scene__hint {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.45rem 0.85rem;
+  background: rgba(26, 31, 46, 0.88);
+  border: 1px solid rgba(88, 168, 240, 0.35);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  color: var(--accent);
+  pointer-events: none;
+  animation: hint-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes hint-pulse {
+  0%, 100% { opacity: 0.75; }
+  50% { opacity: 1; }
+}
+
 .room-scene__touch {
   display: none;
   padding: 0.75rem 1rem 1.25rem;
