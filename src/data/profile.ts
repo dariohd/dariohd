@@ -41,7 +41,7 @@ export const profile = {
     phone: '06 13 80 95 65',
     github: 'https://github.com/dariohd',
     linkedin: 'https://www.linkedin.com/in/hugodavion',
-    portfolio: 'https://dariohd.github.io/hugodavion/',
+    portfolio: 'https://hugodavion.vercel.app/',
   },
   services: [
     { icon: '🌐', label: 'Sites vitrines', desc: 'Landing pages, SEO, réservation, multilingue' },

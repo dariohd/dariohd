@@ -7,6 +7,7 @@ import {
 import { useAppStore } from '../../store/appStore';
 import { setWindowTitle } from '../../store/osStore';
 import { ProjectPreview } from './ProjectPreview';
+import { EmbedFrame } from './EmbedFrame';
 
 interface ProjectDetailAppProps {
   projectId: string;
@@ -51,12 +52,11 @@ export function ProjectDetailApp({ projectId, windowId }: ProjectDetailAppProps)
 
       <div className="app-project-detail__preview">
         {showIframe ? (
-          <iframe
+          <EmbedFrame
             src={project.url}
             title={`Aperçu ${project.name}`}
             className="app-project-detail__iframe"
-            loading="lazy"
-            onError={() => setPreviewFailed(true)}
+            onBlocked={() => setPreviewFailed(true)}
           />
         ) : (
           <a href={project.url} target="_blank" rel="noopener noreferrer" className="app-project-detail__thumb-link">

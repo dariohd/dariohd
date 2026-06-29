@@ -38,8 +38,8 @@ export const desktopFolders: DesktopFolder[] = [
   },
 ];
 
-const COL_W = 88;
-const ROW_H = 92;
+const COL_W = 80;
+const ROW_H = 80;
 const MARGIN_TOP = 12;
 const MARGIN_RIGHT = 16;
 const GAME_COLS = 3;

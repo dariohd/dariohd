@@ -52,7 +52,7 @@ export function ContactApp() {
             <span className="contact-card__icon" aria-hidden="true">🌐</span>
             <div>
               <strong>Portfolio classique</strong>
-              <p>dariohd.github.io/hugodavion</p>
+              <p>hugodavion.vercel.app</p>
             </div>
           </a>
         )}

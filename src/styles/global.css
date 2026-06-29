@@ -725,7 +725,7 @@ kbd {
 .desktop__surface {
   position: relative;
   height: calc(100% - 36px - 48px);
-  overflow: hidden;
+  overflow: auto;
 }
 
 .desktop__icon-slot {
@@ -2237,20 +2237,7 @@ kbd {
   .desktop-widget--clock { display: none; }
 
   .desktop__icon-slot {
-    position: static !important;
-  }
-
-  .desktop__surface {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .desktop__icon-slot:nth-child(n) {
-    display: none;
-  }
-
-  .desktop__surface > .desktop__icon-slot {
-    display: none;
+    position: absolute !important;
   }
 
   .desktop__folders {

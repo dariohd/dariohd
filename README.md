@@ -68,10 +68,10 @@ Développeur full stack, web et technicien réseaux. En alternance chez **CGI** 
 | Bulle | Widget IA pour sites web | [bulle-chatbot.vercel.app](https://bulle-chatbot.vercel.app) |
 | Bulle ton site | Agence sites vitrines artisans | [bulletonsite.com](https://bulletonsite.com) |
 | RL Replay | Analyse de replays Rocket League | [rl-replay.vercel.app](https://rl-replay.vercel.app/) |
-| hugodavion | Portfolio technique classique | [dariohd.github.io/hugodavion](https://dariohd.github.io/hugodavion/) |
+| hugodavion | Portfolio technique classique | [hugodavion.vercel.app](https://hugodavion.vercel.app/) |
 | Rift Arena | Action RPG 3D Babylon.js | [poke-rift.vercel.app](https://poke-rift.vercel.app/) |
 | Rumble Arena Web | Arène top-down Canvas 2D | [pokemonrumbleweb.vercel.app](https://pokemonrumbleweb.vercel.app/) |
-| Dex Explorer | Pokédex web React + PokéAPI | [github.com/dariohd/Pokedex](https://github.com/dariohd/Pokedex) |
+| Dex Explorer | Encyclopédie web React + API | [github.com/dariohd/Pokedex](https://github.com/dariohd/Pokedex) |
 
 Ce dépôt contient mon **portfolio interactif** (scène pixel + bureau DHD OS). Doc technique : [docs/SITE.md](docs/SITE.md).
 
@@ -83,7 +83,7 @@ Ce dépôt contient mon **portfolio interactif** (scène pixel + bureau DHD OS).
 - **Téléphone** : 06 13 80 95 65
 - **LinkedIn** : [linkedin.com/in/hugodavion](https://www.linkedin.com/in/hugodavion)
 - **GitHub** : [github.com/dariohd](https://github.com/dariohd)
-- **Portfolio** : [dariohd.github.io/hugodavion](https://dariohd.github.io/hugodavion/)
+- **Portfolio** : [hugodavion.vercel.app](https://hugodavion.vercel.app/)
 
 ---
 

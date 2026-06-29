@@ -1,5 +1,6 @@
 import { useState, type CSSProperties } from 'react';
 import { canEmbedPreview, getThumbnailUrl, type Project } from '../../data/projects';
+import { EmbedFrame } from './EmbedFrame';
 
 interface ProjectPreviewProps {
   project: Project;
@@ -19,12 +20,10 @@ export function ProjectPreview({ project, className, embed = false }: ProjectPre
         className={`project-preview-embed${className ? ` ${className}` : ''}`}
         aria-hidden="true"
       >
-        <iframe
+        <EmbedFrame
           src={project.url}
           title=""
-          loading="lazy"
-          tabIndex={-1}
-          onError={() => setFailed(true)}
+          onBlocked={() => setFailed(true)}
         />
       </div>
     );
