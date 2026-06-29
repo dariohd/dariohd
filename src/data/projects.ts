@@ -22,7 +22,6 @@ export const projects: Project[] = [
       "Site vitrine pour une maison d'hôtes à Jumilhac-le-Grand : séjours thématiques, galerie photo, réservation par e-mail et versions FR/EN.",
     url: 'https://www.lamaisondela.com',
     repo: 'https://github.com/dariohd/LaMaisonDEla',
-    thumb: 'https://www.lamaisondela.com/images/piscine.jpg',
     preview: 'thumbnail',
     tags: ['HTML/CSS', 'Galerie', 'Multilingue', 'SEO'],
     color: '#f0a8c8',
@@ -37,7 +36,6 @@ export const projects: Project[] = [
       "Landing immersive pour une maison d'hôtes dans une gare rénovée : storytelling, chambres, carte OpenStreetMap et demande de réservation.",
     url: 'https://quai-des-reves.vercel.app/',
     repo: 'https://github.com/dariohd/QuaiDesReves',
-    thumb: 'https://quai-des-reves.vercel.app/images/og-image.jpg',
     preview: 'iframe',
     tags: ['Landing', 'Storytelling', 'OpenStreetMap', 'Vercel'],
     color: '#6898c8',
@@ -52,7 +50,6 @@ export const projects: Project[] = [
       "Site professionnel pour une entreprise de charpente à Jumilhac-le-Grand : métiers, zone d'intervention, galerie de chantiers filtrable et devis.",
     url: 'https://www.etcbc-charpente.com/',
     repo: 'https://github.com/dariohd/ETCBC',
-    thumb: 'https://www.etcbc-charpente.com/images/gallery/realisation-18.webp',
     preview: 'iframe',
     tags: ['Site pro', 'Galerie', 'SEO local', 'JavaScript'],
     color: '#c8a070',
@@ -81,7 +78,6 @@ export const projects: Project[] = [
       'PWA React/TypeScript pour le suivi SQCDP : tableaux animés, mode Daily, PDCA/8D, stand-up, roulette de réunion, export CSV/PDF et synchronisation hors-ligne via API Express.',
     url: 'https://sqcdp.vercel.app/',
     repo: 'https://github.com/dariohd/SQCDP',
-    thumb: 'https://sqcdp.vercel.app/favicon.svg',
     preview: 'iframe',
     tags: ['React', 'TypeScript', 'PWA', 'Express', 'PostgreSQL'],
     color: '#58a8f0',
@@ -110,7 +106,6 @@ export const projects: Project[] = [
       'Site commercial de l\'agence : offres artisans/tourisme, carrousel de réalisations, mini-navigateurs intégrés et modules JS.',
     url: 'https://www.bulletonsite.com',
     repo: 'https://github.com/dariohd/BulleTonSite',
-    thumb: 'https://www.bulletonsite.com/assets/og-bubble.svg',
     preview: 'thumbnail',
     tags: ['Agence', 'Modules JS', 'Thèmes CSS', 'Vercel'],
     color: '#f0c060',
@@ -181,6 +176,7 @@ export const projects: Project[] = [
       'Application web React : fiches détaillées, évolutions, formes alternatives, recherche FR et comparaison de stats. Version desktop WPF dans le même dépôt.',
     url: 'https://github.com/dariohd/Pokedex',
     repo: 'https://github.com/dariohd/Pokedex',
+    thumb: '/projects/dex-explorer.svg',
     preview: 'thumbnail',
     tags: ['React 19', 'TypeScript', 'API REST', 'Tailwind'],
     color: '#f0c060',
@@ -193,8 +189,9 @@ export function getProjectById(id: string): Project | undefined {
   return projects.find((p) => p.id === id);
 }
 
-export function getThumbnailUrl(project: Project): string | null {
-  return project.thumb ?? null;
+export function getThumbnailUrl(project: Project): string {
+  if (project.thumb) return project.thumb;
+  return `/projects/${project.id}.jpg`;
 }
 
 export function canEmbedPreview(project: Project): boolean {

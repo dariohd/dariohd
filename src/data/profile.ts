@@ -23,14 +23,16 @@ export interface Language {
 }
 
 export const profile = {
+  /** Nom civil — CV, contact (portfolio classique hugodavion). */
   name: 'Hugo Davion',
+  /** Identité publique de ce portfolio interactif. */
+  brand: 'dariohd',
   alias: 'DHD',
   handle: 'dariohd',
   title: 'Développeur full stack · alternance CGI',
   tagline: 'Web, PWA, réseaux et expériences interactives, du pixel au WebGL.',
   location: 'France',
   age: 22,
-  brand: 'dariohd',
   bio: [
     'Développeur full stack, web et technicien réseaux. En alternance chez CGI (front-end TypeScript, back-end Java Spring, PostgreSQL) et en cycle ingénieur RIOC à UniLaSalle Amiens.',
     'En parallèle, je conçois des sites vitrines, PWA métier et petits jeux en indépendant sous la marque dariohd.',

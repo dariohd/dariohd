@@ -38,44 +38,63 @@ export const desktopFolders: DesktopFolder[] = [
   },
 ];
 
-const COL_W = 80;
-const ROW_H = 80;
-const MARGIN_TOP = 12;
-const MARGIN_RIGHT = 16;
-const GAME_COLS = 3;
+export const ICON_COL_W = 92;
+export const ICON_ROW_H = 96;
+
+const MARGIN_LEFT = 20;
+const MARGIN_TOP = 52;
+const WIDGET_RESERVE_W = 228;
+const APPS_COLS = 2;
+const GAMES_COLS = 3;
+const BLOCK_GAP = 24;
 
 export type IconZone = 'app' | 'game';
 
-/** Positions par défaut : apps à droite, jeux en 3 colonnes à leur gauche */
+function appsStartX(surfaceWidth: number): number {
+  if (surfaceWidth < 640) return MARGIN_LEFT;
+  return MARGIN_LEFT + WIDGET_RESERVE_W;
+}
+
+/** Apps en colonnes à gauche (après les widgets), jeux à côté — style bureau classique. */
 export function defaultIconPosition(
   zone: IconZone,
   indexInZone: number,
   surfaceWidth: number,
+  _surfaceHeight: number,
 ): { x: number; y: number } {
-  const appColX = Math.max(16, surfaceWidth - COL_W - MARGIN_RIGHT);
+  const appsStart = appsStartX(surfaceWidth);
+  const appsBlockW = APPS_COLS * ICON_COL_W;
+  const gamesStartX = appsStart + appsBlockW + BLOCK_GAP;
 
   if (zone === 'app') {
-    return { x: appColX, y: MARGIN_TOP + indexInZone * ROW_H };
+    const col = indexInZone % APPS_COLS;
+    const row = Math.floor(indexInZone / APPS_COLS);
+    return { x: appsStart + col * ICON_COL_W, y: MARGIN_TOP + row * ICON_ROW_H };
   }
 
-  const col = indexInZone % GAME_COLS;
-  const row = Math.floor(indexInZone / GAME_COLS);
-  const x = appColX - (GAME_COLS - col) * COL_W;
+  const col = indexInZone % GAMES_COLS;
+  const row = Math.floor(indexInZone / GAMES_COLS);
+  const x = gamesStartX + col * ICON_COL_W;
 
-  return {
-    x: Math.max(16, x),
-    y: MARGIN_TOP + row * ROW_H,
-  };
+  if (surfaceWidth < 640) {
+    const mobileCol = indexInZone % 3;
+    const mobileRow = Math.floor(indexInZone / 3);
+    const appsRows = Math.ceil(desktopApps.length / APPS_COLS);
+    return {
+      x: MARGIN_LEFT + mobileCol * ICON_COL_W,
+      y: MARGIN_TOP + (appsRows + 1) * ICON_ROW_H + mobileRow * ICON_ROW_H,
+    };
+  }
+
+  return { x, y: MARGIN_TOP + row * ICON_ROW_H };
 }
 
-export function defaultFolderPosition(index: number, surfaceWidth: number, surfaceHeight: number): { x: number; y: number } {
+export function defaultFolderPosition(index: number, _surfaceWidth: number, surfaceHeight: number): { x: number; y: number } {
   const folderW = 92;
   const gap = 16;
-  const totalW = desktopFolders.length * folderW + (desktopFolders.length - 1) * gap;
-  const startX = Math.max(16, (surfaceWidth - totalW) / 2);
   return {
-    x: startX + index * (folderW + gap),
-    y: Math.max(16, surfaceHeight - 120),
+    x: MARGIN_LEFT + index * (folderW + gap),
+    y: Math.max(16, surfaceHeight - 118),
   };
 }
 

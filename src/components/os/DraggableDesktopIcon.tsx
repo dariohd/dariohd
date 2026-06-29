@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, type PointerEvent as ReactPointerEvent 
 import { playIconOpen } from '../../game/audio';
 import { DesktopIcon } from './DesktopIcon';
 import { useDesktopStore } from '../../store/desktopStore';
-import { defaultIconPosition } from '../../data/desktopItems';
+import { defaultIconPosition, ICON_COL_W } from '../../data/desktopItems';
 
 const DRAG_THRESHOLD = 8;
 
@@ -47,7 +47,8 @@ export function DraggableDesktopIcon({
     if (iconPositions[id]) return iconPositions[id]!;
     const surface = document.querySelector('.desktop__surface');
     const w = surface?.clientWidth ?? 800;
-    return defaultIconPosition(zone, index, w);
+    const h = surface?.clientHeight ?? 600;
+    return defaultIconPosition(zone, index, w, h);
   }, [iconPositions, id, index, zone]);
 
   const pos = getPos();
@@ -111,7 +112,7 @@ export function DraggableDesktopIcon({
       if (!iconPositions[id]) return;
       const surface = document.querySelector('.desktop__surface');
       if (!surface) return;
-      const maxX = surface.clientWidth - 96;
+      const maxX = surface.clientWidth - ICON_COL_W - 8;
       const p = iconPositions[id]!;
       if (p.x > maxX) setIconPosition(id, maxX, p.y);
     };

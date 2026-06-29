@@ -212,8 +212,8 @@ export function Desktop() {
               transition={{ duration: 0.22, ease: 'easeOut' }}
             >
               <p>
-                <strong>Bienvenue sur DHD OS.</strong> Icônes à droite, dossiers en bas.
-                Clic droit sur le bureau pour plus d’options. Explore les projets !
+                <strong>Bienvenue sur DHD OS.</strong> Apps et jeux à gauche, dossiers centrés au-dessus de la barre des tâches.
+                Clic pour ouvrir · glisser pour déplacer · clic droit pour le menu.
               </p>
               <button type="button" className="btn btn--primary btn--sm" onClick={() => setWelcomeDismissed(true)}>
                 Compris

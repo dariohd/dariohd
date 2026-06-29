@@ -52,14 +52,14 @@ export function ContactApp() {
             <span className="contact-card__icon" aria-hidden="true">🌐</span>
             <div>
               <strong>Portfolio classique</strong>
-              <p>hugodavion.vercel.app</p>
+              <p>hugodavion · CV & fiches projets</p>
             </div>
           </a>
         )}
       </div>
 
       <p className="app-contact__brand">
-        {profile.name} · <strong>{profile.brand}</strong> · {profile.title}
+        <strong>{profile.brand}</strong> · {profile.alias} · {profile.name}
       </p>
     </div>
   );

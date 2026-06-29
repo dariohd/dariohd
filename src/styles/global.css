@@ -134,6 +134,13 @@ kbd {
   font-size: clamp(2.2rem, 6vw, 3.2rem);
   font-weight: 700;
   line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.title-screen__handle {
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  color: var(--accent-2);
   margin-bottom: 1rem;
 }
 
@@ -739,30 +746,33 @@ kbd {
 
 .desktop__folders {
   position: absolute;
-  bottom: 1.25rem;
+  bottom: 3.5rem;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 2;
+  z-index: 3;
   display: flex;
-  gap: 1.25rem;
-  padding: 0.5rem 1rem;
-  border-radius: 14px;
-  background: rgba(10, 14, 22, 0.35);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  gap: 1.5rem;
+  padding: 0.65rem 1.35rem;
+  border-radius: 16px;
+  background: rgba(10, 14, 22, 0.55);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(88, 168, 240, 0.18);
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
-.desktop-folder .desktop-icon { width: 76px; }
+.desktop-folder .desktop-icon { width: 92px; }
 
 .desktop-icon {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.35rem;
-  width: 80px;
+  gap: 0.4rem;
+  width: 92px;
   padding: 0.5rem;
-  border-radius: 10px;
-  transition: background 0.15s;
+  border-radius: 12px;
+  transition: background 0.15s, transform 0.15s;
 }
 
 .desktop-icon--passive {
@@ -770,21 +780,25 @@ kbd {
   user-select: none;
 }
 
-.desktop-icon:hover { background: rgba(255, 255, 255, 0.06); }
+.desktop-icon:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
 
 .desktop-icon__badge {
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
-  border-radius: 12px;
+  font-size: 1.65rem;
+  border-radius: 14px;
   border: 1px solid;
 }
 
 .desktop-icon__label {
-  font-size: 0.72rem;
+  font-size: 0.78rem;
+  line-height: 1.2;
   text-align: center;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
@@ -1565,7 +1579,7 @@ kbd {
   box-shadow: 0 0 8px var(--success);
 }
 
-.desktop-icon__emoji { position: relative; z-index: 1; font-size: 1.35rem; }
+.desktop-icon__emoji { position: relative; z-index: 1; font-size: 1.65rem; }
 
 .desktop-icon__shine {
   position: absolute;
@@ -1829,13 +1843,13 @@ kbd {
 /* ── Desktop widgets ── */
 .desktop-widgets {
   position: absolute;
-  top: 1rem;
+  top: 3rem;
   left: 1.25rem;
   z-index: 2;
   display: flex;
   flex-direction: column;
   gap: 0.65rem;
-  width: min(220px, 28vw);
+  width: min(210px, 28vw);
 }
 
 .desktop-widget {
@@ -2229,32 +2243,51 @@ kbd {
 @media (max-width: 768px) {
   .desktop-widgets {
     width: auto;
-    right: 0.5rem;
-    left: auto;
-    top: 0.5rem;
+    left: 0.5rem;
+    right: auto;
+    top: 2.75rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.45rem;
+  }
+
+  .desktop-widget {
+    flex: 1 1 140px;
+    min-width: 0;
+    padding: 0.55rem 0.65rem;
   }
 
   .desktop-widget--clock { display: none; }
+
+  .desktop-widget--progress,
+  .desktop-widget--quick {
+    flex: 1 1 100%;
+  }
 
   .desktop__icon-slot {
     position: absolute !important;
   }
 
   .desktop__folders {
-    position: static;
-    transform: none;
-    order: 2;
-    margin: auto 0.5rem 0.5rem;
+    position: absolute;
+    bottom: 3.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0.65rem;
+    max-width: calc(100% - 1rem);
+    padding: 0.55rem 1rem;
   }
 
-  .desktop-folder .desktop-icon { width: 64px; }
+  .desktop-folder .desktop-icon { width: 80px; }
 
-  .desktop-icon { width: 64px; }
-  .desktop-icon__badge { width: 40px; height: 40px; font-size: 1.1rem; }
-  .desktop-icon__label { font-size: 0.65rem; }
+  .desktop-icon { width: 80px; }
+  .desktop-icon__badge { width: 48px; height: 48px; font-size: 1.45rem; }
+  .desktop-icon__emoji { font-size: 1.45rem; }
+  .desktop-icon__label { font-size: 0.68rem; }
 
   .taskbar__quick { display: none; }
   .taskbar__tray-label { display: none; }

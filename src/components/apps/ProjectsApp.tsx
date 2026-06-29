@@ -55,7 +55,7 @@ export function ProjectsApp() {
             onClick={() => openProject(project.id)}
           >
             <div className="project-card__preview">
-              <ProjectPreview project={project} embed />
+              <ProjectPreview project={project} />
               <span className="project-card__icon">{project.icon}</span>
               {discovered.has(project.id) && <span className="project-card__badge">✓</span>}
             </div>

@@ -5,14 +5,15 @@ import { EmbedFrame } from './EmbedFrame';
 interface ProjectPreviewProps {
   project: Project;
   className?: string;
-  /** Carte compacte : iframe live si le site le permet */
+  /** Aperçu live iframe (détail projet uniquement) */
   embed?: boolean;
 }
 
 export function ProjectPreview({ project, className, embed = false }: ProjectPreviewProps) {
-  const [failed, setFailed] = useState(false);
-  const src = getThumbnailUrl(project);
-  const useEmbed = embed && canEmbedPreview(project) && !failed;
+  const [imgFailed, setImgFailed] = useState(false);
+  const [embedFailed, setEmbedFailed] = useState(false);
+  const thumb = getThumbnailUrl(project);
+  const useEmbed = embed && canEmbedPreview(project) && !embedFailed && imgFailed;
 
   if (useEmbed) {
     return (
@@ -23,32 +24,47 @@ export function ProjectPreview({ project, className, embed = false }: ProjectPre
         <EmbedFrame
           src={project.url}
           title=""
-          onBlocked={() => setFailed(true)}
+          onBlocked={() => setEmbedFailed(true)}
         />
       </div>
     );
   }
 
-  if (!src || failed) {
+  if (!imgFailed) {
+    return (
+      <img
+        src={thumb}
+        alt=""
+        loading="lazy"
+        className={className}
+        onError={() => setImgFailed(true)}
+      />
+    );
+  }
+
+  if (embed && canEmbedPreview(project) && !embedFailed) {
     return (
       <div
-        className={`project-preview-fallback${className ? ` ${className}` : ''}`}
-        style={{ '--accent': project.color } as CSSProperties}
+        className={`project-preview-embed${className ? ` ${className}` : ''}`}
         aria-hidden="true"
       >
-        <span className="project-preview-fallback__icon">{project.icon}</span>
-        <span className="project-preview-fallback__name">{project.name}</span>
+        <EmbedFrame
+          src={project.url}
+          title=""
+          onBlocked={() => setEmbedFailed(true)}
+        />
       </div>
     );
   }
 
   return (
-    <img
-      src={src}
-      alt=""
-      loading="lazy"
-      className={className}
-      onError={() => setFailed(true)}
-    />
+    <div
+      className={`project-preview-fallback${className ? ` ${className}` : ''}`}
+      style={{ '--accent': project.color } as CSSProperties}
+      aria-hidden="true"
+    >
+      <span className="project-preview-fallback__icon">{project.icon}</span>
+      <span className="project-preview-fallback__name">{project.name}</span>
+    </div>
   );
 }

@@ -6,7 +6,7 @@ const WALLPAPER_KEY = 'dhd-wallpaper';
 const WIDGETS_KEY = 'dhd-widgets';
 const SOUNDS_KEY = 'dhd-os-sounds';
 const NOTES_KEY = 'dhd-notes';
-const ICON_POS_KEY = 'dhd-icon-positions';
+const ICON_POS_KEY = 'dhd-icon-positions-v4';
 
 function loadJson<T>(key: string, fallback: T): T {
   try {

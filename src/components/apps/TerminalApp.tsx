@@ -61,7 +61,7 @@ export function TerminalApp() {
       case 'whoami':
         setLines((prev) => [
           ...prev,
-          { type: 'out', text: `${profile.name} (@${profile.handle}), ${profile.title}` },
+          { type: 'out', text: `${profile.brand} (@${profile.handle}) · ${profile.title}` },
         ]);
         break;
       case 'about':

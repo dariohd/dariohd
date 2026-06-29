@@ -20,7 +20,8 @@ export function TitleScreen() {
       >
         <div className="title-screen__logo-mark">{profile.alias}</div>
         <p className="title-screen__eyebrow">Portfolio interactif</p>
-        <h1 className="title-screen__title">{profile.name}</h1>
+        <h1 className="title-screen__title">{profile.brand}</h1>
+        <p className="title-screen__handle">@{profile.handle} · {profile.alias}</p>
         <p className="title-screen__subtitle">
           Déplacez-vous dans la scène, accédez au PC et explorez mes projets web.
         </p>

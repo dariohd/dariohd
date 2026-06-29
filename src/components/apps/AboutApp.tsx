@@ -5,11 +5,11 @@ export function AboutApp() {
   return (
     <div className="app-about">
       <div className="app-about__hero">
-        <div className="app-about__avatar">{profile.name[0]}</div>
+        <div className="app-about__avatar">{profile.alias[0]}</div>
         <div>
-          <h2>{profile.name}</h2>
-          <p className="app-about__title">{profile.title}</p>
-          <p className="app-about__handle">@{profile.handle} · {profile.alias}</p>
+          <h2>{profile.brand}</h2>
+          <p className="app-about__title">{profile.alias} · @{profile.handle}</p>
+          <p className="app-about__handle">{profile.name} · {profile.title}</p>
           <p className="app-about__location">{profile.location} · {profile.age} ans</p>
         </div>
       </div>
