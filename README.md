@@ -4,6 +4,9 @@
 
 > **Documentation technique du site** : [docs/SITE.md](./docs/SITE.md) (architecture React, DHD OS, scène pixel, déploiement)
 
+| | |
+|---|---|
+| **URL production** | https://dariohd.vercel.app |
 | **Dépôt** | [github.com/dariohd/dariohd](https://github.com/dariohd/dariohd) |
 | **Stack** | React 18, TypeScript, Vite, Zustand, Framer Motion, Canvas 2D |
 
