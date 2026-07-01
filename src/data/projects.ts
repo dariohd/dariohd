@@ -142,7 +142,7 @@ export const projects: Project[] = [
   },
   {
     id: 'pokerift',
-    name: 'Rift Arena',
+    name: 'PokeRift',
     tagline: 'Action RPG 3D en navigateur',
     description:
       'Jeu d\'arène 3D avec Babylon.js : hub dimensionnel, donjons, vagues d\'ennemis, combos et collection de figurines.',
