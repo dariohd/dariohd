@@ -21,7 +21,7 @@ export const projects: Project[] = [
     tagline: 'Présence atelier · Next.js + Prisma',
     description:
       'Outil métier de planning de présence : Auth.js, Neon Postgres, i18n FR/EN/PT, graphiques et tests Playwright. Migré depuis Google Apps Script.',
-    url: 'https://planning-presence-atelier.vercel.app/',
+    url: 'https://planning-tristan.vercel.app/',
     repo: 'https://github.com/dariohd/Planning',
     preview: 'iframe',
     tags: ['Next.js', 'Prisma', 'Auth.js', 'Neon', 'Playwright'],
@@ -105,7 +105,7 @@ export const projects: Project[] = [
     tagline: 'Assistant IA embarquable pour sites web',
     description:
       'Widget IA greffable sur un site vitrine : chat contextuel, indexation du contenu, clés par domaine et déploiement Vercel.',
-    url: 'https://bulle-chatbot.vercel.app',
+    url: 'https://bullechatbot.vercel.app',
     repo: 'https://github.com/dariohd/BulleChatBot',
     preview: 'iframe',
     tags: ['Next.js', 'AI SDK', 'Widget', 'Vercel'],
@@ -161,7 +161,7 @@ export const projects: Project[] = [
     tagline: 'Figurines 2.5D · PokéAPI live',
     description:
       'Arène web Phaser 3 : combat auto, vagues, combos, recrutement. Stats et sprites officiels via PokéAPI.',
-    url: 'https://pokearena-topaz.vercel.app/',
+    url: 'https://arena-poke.vercel.app/',
     repo: 'https://github.com/dariohd/PokeArena',
     preview: 'iframe',
     tags: ['Phaser 3', 'TypeScript', 'PokéAPI', '2.5D'],
@@ -175,7 +175,7 @@ export const projects: Project[] = [
     tagline: 'Encyclopédie de créatures via API publique',
     description:
       'Application web React : fiches détaillées, évolutions, formes alternatives, recherche FR et comparaison de stats. Version desktop WPF dans le même dépôt.',
-    url: 'https://pokedex-dariohprojects.vercel.app',
+    url: 'https://dex-explorer.vercel.app',
     repo: 'https://github.com/dariohd/Pokedex',
     thumb: '/projects/dex-explorer.svg',
     preview: 'thumbnail',

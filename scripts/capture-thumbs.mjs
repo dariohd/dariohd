@@ -16,11 +16,11 @@ const captures = [
   { file: 'etcbc.jpg', url: 'https://www.etcbc-charpente.com/' },
   { file: 'domainederoche.jpg', url: 'https://domainederoche.vercel.app/' },
   { file: 'sqcdp.jpg', url: 'https://sqcdp.vercel.app/' },
-  { file: 'bulle.jpg', url: 'https://bulle-chatbot.vercel.app/' },
+  { file: 'bulle.jpg', url: 'https://bullechatbot.vercel.app/' },
   { file: 'bulletonsite.jpg', url: 'https://www.bulletonsite.com/' },
   { file: 'rlreplay.jpg', url: 'https://rl-replay.vercel.app/' },
   { file: 'hugodavion.jpg', url: 'https://hugodavion.vercel.app/', skipIntro: true, wait: 3500 },
-  { file: 'pokearena.jpg', url: 'https://pokearena-topaz.vercel.app/', wait: 4000 },
+  { file: 'pokearena.jpg', url: 'https://arena-poke.vercel.app/', wait: 4000 },
 ];
 
 function svgThumb(title, subtitle, color) {

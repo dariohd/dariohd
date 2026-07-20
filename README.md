@@ -68,12 +68,12 @@ Développeur full stack, web et technicien réseaux. En alternance chez **CGI** 
 | ETCBC | Charpente & construction bois | [etcbc-charpente.com](https://www.etcbc-charpente.com/) |
 | Domaine de Roche | Gîtes & château, Charente-Maritime | [domainederoche.vercel.app](https://domainederoche.vercel.app/) |
 | SQCDP | PWA pilotage industriel (Daily, PDCA) | [sqcdp.vercel.app](https://sqcdp.vercel.app/) |
-| Bulle | Widget IA pour sites web | [bulle-chatbot.vercel.app](https://bulle-chatbot.vercel.app) |
+| Bulle | Widget IA pour sites web | [bullechatbot.vercel.app](https://bullechatbot.vercel.app) |
 | Bulle ton site | Agence sites vitrines artisans | [bulletonsite.com](https://bulletonsite.com) |
 | RL Replay | Analyse de replays Rocket League | [rl-replay.vercel.app](https://rl-replay.vercel.app/) |
 | hugodavion | Portfolio technique classique | [hugodavion.vercel.app](https://hugodavion.vercel.app/) |
-| PokeArena | Figurines 2.5D · PokéAPI | [pokearena-topaz.vercel.app](https://pokearena-topaz.vercel.app/) |
-| Dex Explorer | Encyclopédie web React + API | [github.com/dariohd/Pokedex](https://github.com/dariohd/Pokedex) |
+| PokeArena | Figurines 2.5D · PokéAPI | [arena-poke.vercel.app](https://arena-poke.vercel.app/) |
+| Dex Explorer | Encyclopédie web React + API | [dex-explorer.vercel.app](https://dex-explorer.vercel.app) |
 
 Ce dépôt contient mon **portfolio interactif** (scène pixel + bureau DHD OS). Doc technique : [docs/SITE.md](docs/SITE.md).
 
