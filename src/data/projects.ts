@@ -175,7 +175,7 @@ export const projects: Project[] = [
     tagline: 'Encyclopédie de créatures via API publique',
     description:
       'Application web React : fiches détaillées, évolutions, formes alternatives, recherche FR et comparaison de stats. Version desktop WPF dans le même dépôt.',
-    url: 'https://github.com/dariohd/Pokedex',
+    url: 'https://pokedex-dariohprojects.vercel.app',
     repo: 'https://github.com/dariohd/Pokedex',
     thumb: '/projects/dex-explorer.svg',
     preview: 'thumbnail',
