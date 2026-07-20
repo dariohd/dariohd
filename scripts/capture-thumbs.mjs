@@ -20,8 +20,7 @@ const captures = [
   { file: 'bulletonsite.jpg', url: 'https://www.bulletonsite.com/' },
   { file: 'rlreplay.jpg', url: 'https://rl-replay.vercel.app/' },
   { file: 'hugodavion.jpg', url: 'https://hugodavion.vercel.app/', skipIntro: true, wait: 3500 },
-  { file: 'pokerift.jpg', url: 'https://poke-rift.vercel.app/', wait: 4000 },
-  { file: 'rumble-arena.jpg', url: 'https://pokemonrumbleweb.vercel.app/', wait: 3000 },
+  { file: 'pokearena.jpg', url: 'https://pokearena-topaz.vercel.app/', wait: 4000 },
 ];
 
 function svgThumb(title, subtitle, color) {

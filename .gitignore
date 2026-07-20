@@ -8,3 +8,5 @@ dist/
 *.log
 .vite/
 _debug-collision.png
+.vercel
+.env*
