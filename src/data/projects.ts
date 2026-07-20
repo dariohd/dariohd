@@ -21,7 +21,7 @@ export const projects: Project[] = [
     tagline: 'Présence atelier · Next.js + Prisma',
     description:
       'Outil métier de planning de présence : Auth.js, Neon Postgres, i18n FR/EN/PT, graphiques et tests Playwright. Migré depuis Google Apps Script.',
-    url: 'https://planning-black-xi.vercel.app/',
+    url: 'https://planning-presence-atelier.vercel.app/',
     repo: 'https://github.com/dariohd/Planning',
     preview: 'iframe',
     tags: ['Next.js', 'Prisma', 'Auth.js', 'Neon', 'Playwright'],
