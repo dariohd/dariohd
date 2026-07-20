@@ -13,13 +13,28 @@ export interface Project {
   category: 'client' | 'product' | 'game';
 }
 
+/** Catalogue vitrine : focus recruteur / école (prod, stack moderne, preuves client). */
 export const projects: Project[] = [
+  {
+    id: 'planning',
+    name: 'Planning',
+    tagline: 'Présence atelier · Next.js + Prisma',
+    description:
+      'Outil métier de planning de présence : Auth.js, Neon Postgres, i18n FR/EN/PT, graphiques et tests Playwright. Migré depuis Google Apps Script.',
+    url: 'https://planning-black-xi.vercel.app/',
+    repo: 'https://github.com/dariohd/Planning',
+    preview: 'iframe',
+    tags: ['Next.js', 'Prisma', 'Auth.js', 'Neon', 'Playwright'],
+    color: '#3d8bfd',
+    icon: '📅',
+    category: 'product',
+  },
   {
     id: 'maison-ela',
     name: "La Maison d'Ela",
     tagline: "Chambre d'hôtes de charme en Dordogne",
     description:
-      "Site vitrine pour une maison d'hôtes à Jumilhac-le-Grand : séjours thématiques, galerie photo, réservation par e-mail et versions FR/EN.",
+      "Site vitrine pour une maison d'hôtes à Jumilhac-le-Grand : séjours thématiques, galerie photo, réservation et versions FR/EN.",
     url: 'https://www.lamaisondela.com',
     repo: 'https://github.com/dariohd/LaMaisonDEla',
     preview: 'thumbnail',
@@ -59,23 +74,23 @@ export const projects: Project[] = [
   {
     id: 'domainederoche',
     name: 'Domaine de Roche',
-    tagline: 'Gîtes & château en Charente-Maritime',
+    tagline: 'Template démo · gîtes & château',
     description:
-      'Château et gîtes en Charente-Maritime : site Next.js multilingue, animations Framer Motion et SEO.',
+      'Template Next.js multilingue (Bulle ton site) : Framer Motion, SEO, réservation. Placeholders volontaires — catalogue template, pas un site client.',
     url: 'https://domainederoche.vercel.app/',
     repo: 'https://github.com/dariohd/DomaineDeRoche',
     preview: 'iframe',
-    tags: ['Next.js', 'React 19', 'i18n', 'Framer Motion'],
+    tags: ['Next.js', 'Template', 'i18n', 'Framer Motion'],
     color: '#94c878',
     icon: '🏰',
-    category: 'client',
+    category: 'product',
   },
   {
     id: 'sqcdp',
     name: 'SQCDP',
     tagline: 'Pilotage industriel premium',
     description:
-      'PWA React/TypeScript pour le suivi SQCDP : tableaux animés, mode Daily, PDCA/8D, stand-up, roulette de réunion, export CSV/PDF et synchronisation hors-ligne via API Express.',
+      'PWA React/TypeScript pour le suivi SQCDP : tableaux animés, mode Daily, PDCA/8D, stand-up, export CSV/PDF et synchronisation hors-ligne.',
     url: 'https://sqcdp.vercel.app/',
     repo: 'https://github.com/dariohd/SQCDP',
     preview: 'iframe',
@@ -103,7 +118,7 @@ export const projects: Project[] = [
     name: 'Bulle ton site',
     tagline: 'Sites vitrines pour artisans & PME',
     description:
-      'Site commercial de l\'agence : offres artisans/tourisme, carrousel de réalisations, mini-navigateurs intégrés et modules JS.',
+      "Site commercial de l'agence : offres artisans/tourisme, carrousel de réalisations, mini-navigateurs intégrés et modules JS.",
     url: 'https://www.bulletonsite.com',
     repo: 'https://github.com/dariohd/BulleTonSite',
     preview: 'thumbnail',
@@ -147,6 +162,7 @@ export const projects: Project[] = [
     description:
       'Arène web Phaser 3 : combat auto, vagues, combos, recrutement. Stats et sprites officiels via PokéAPI.',
     url: 'https://pokearena-topaz.vercel.app/',
+    repo: 'https://github.com/dariohd/PokeArena',
     preview: 'iframe',
     tags: ['Phaser 3', 'TypeScript', 'PokéAPI', '2.5D'],
     color: '#3cf0ff',
@@ -198,6 +214,10 @@ export function loadDiscovered(): Set<string> {
   }
 }
 
-export function saveDiscovered(set: Set<string>): void {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify([...set]));
+export function saveDiscovered(ids: Set<string>): void {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify([...ids]));
+  } catch {
+    /* ignore */
+  }
 }
