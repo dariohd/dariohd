@@ -72,8 +72,7 @@ Développeur full stack, web et technicien réseaux. En alternance chez **CGI** 
 | Bulle ton site | Agence sites vitrines artisans | [bulletonsite.com](https://bulletonsite.com) |
 | RL Replay | Analyse de replays Rocket League | [rl-replay.vercel.app](https://rl-replay.vercel.app/) |
 | hugodavion | Portfolio technique classique | [hugodavion.vercel.app](https://hugodavion.vercel.app/) |
-| Rift Arena | Action RPG 3D Babylon.js | [poke-rift.vercel.app](https://poke-rift.vercel.app/) |
-| Rumble Arena Web | Arène top-down Canvas 2D | [pokemonrumbleweb.vercel.app](https://pokemonrumbleweb.vercel.app/) |
+| PokeArena | Figurines 2.5D · PokéAPI | [pokearena-topaz.vercel.app](https://pokearena-topaz.vercel.app/) |
 | Dex Explorer | Encyclopédie web React + API | [github.com/dariohd/Pokedex](https://github.com/dariohd/Pokedex) |
 
 Ce dépôt contient mon **portfolio interactif** (scène pixel + bureau DHD OS). Doc technique : [docs/SITE.md](docs/SITE.md).
